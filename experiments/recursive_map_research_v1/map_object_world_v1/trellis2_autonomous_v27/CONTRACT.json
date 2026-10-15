@@ -1,0 +1,106 @@
+{
+  "version": "v27",
+  "map_id": "Map10",
+  "persistent_chunk_id": "map10-0",
+  "fixed_seed": 942271,
+  "max_generations": 2,
+  "max_feedback_retries": 1,
+  "model_training": false,
+  "lease_seconds": 720,
+  "idle_seconds": 240,
+  "per_attempt_seconds": 180,
+  "automatic_retry_only_for": "Measured positive-road column obstruction or missing road surface; not subjective aesthetics",
+  "intervention": "Native proposal, then at most one reused v24 localized Structure observation, same reference/noise/frame; no global v20 projection",
+  "query_semantics": "Opaque saved-mesh vertical rays; not Gaussian centers, not horizontal collision certification",
+  "gates": {
+    "road_surface_near_display_ground_fraction_min": 0.95,
+    "road_air_column_obstruction_fraction_max": 0.05,
+    "ground_height_tolerance_display_units": 0.5,
+    "clearance_height_display_units": 8.0,
+    "floor_lower_tolerance_display_units": 0.5,
+    "finite_nonempty_geometry_required": true,
+    "semantic_building_identity_required": true,
+    "neighbor_compatibility_required_when_neighbor_exists": true
+  },
+  "unresolved": {
+    "roof_polygons": "Visible roof proxies from oblique screenshot, not cadastral footprints",
+    "building_semantic_labels": "Native whole-scene mesh has no verified building/object segmentation",
+    "neighbor_seams": "No previously accepted map-aligned AI neighbor; NOT_TESTED, not a seam pass",
+    "unknowns": "Height, hidden roofs, terrain, untraced roads/free space remain unknown"
+  },
+  "acceptance": "Fail closed on unresolved required map-object correspondence. Diagnostic candidates never auto-install.",
+  "cache": "Accepted SHA manifest immutable; CAS commit; rejected candidate cannot replace accepted world",
+  "coordinates": {
+    "native_to_gltf": "[x,y,z] -> [100*x,100*(z-floor),-100*y]",
+    "floor": -0.06219705939292908,
+    "units": "normalized display units, not meters",
+    "output_alignment_fit": false
+  },
+  "map_sources": {
+    "v11_metadata": {
+      "path": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+      "sha256": "5322ea8bed6c12bf549b7ba0e56f1c8ed7ad15dbaa037e360fbb3d4e135dcf68",
+      "expected_sha256": null,
+      "expected_hash_verified": false
+    },
+    "raster_metadata": {
+      "path": "map_object_world_v1/trellis2_map_learning_v1/trial_fix1/real_input/MAP_INPUT.json",
+      "sha256": "0a1342ff01c2cef96eec1599376e21405b8005c697a60345e47a4b84c48a1dea",
+      "expected_sha256": null,
+      "expected_hash_verified": false
+    },
+    "raster_archive": {
+      "path": "map_object_world_v1/trellis2_map_learning_v1/trial_fix1/real_input/map.npz",
+      "sha256": "6c9cc5fcf2c7f664c0e11adb6a432b086d4cf3876a7050399235d9dffa50c113",
+      "expected_sha256": "6c9cc5fcf2c7f664c0e11adb6a432b086d4cf3876a7050399235d9dffa50c113",
+      "expected_hash_verified": true
+    },
+    "source_image": {
+      "path": "map10_source.jpg",
+      "sha256": "066bb11bfc99ebccae10505f235167cb0f9c9dcca06d24343d1328a29842cc7b",
+      "expected_sha256": "066bb11bfc99ebccae10505f235167cb0f9c9dcca06d24343d1328a29842cc7b",
+      "expected_hash_verified": true
+    },
+    "annotation_compiler": {
+      "path": "trellis2_map_real_input_v1.py",
+      "sha256": "80a402716ccf57951d09e761ad695332f8f9a046e9810dd79947be7485922701",
+      "expected_sha256": "80a402716ccf57951d09e761ad695332f8f9a046e9810dd79947be7485922701",
+      "expected_hash_verified": true
+    },
+    "reference_crop": {
+      "path": "map_object_world_v1/trellis2_map10_block_v11/inputs/source_crop.png",
+      "sha256": "f253e2aed0d4f71971debab215d8d2bcf6aa0b2ed10d842540933eda49a5d030",
+      "expected_sha256": "f253e2aed0d4f71971debab215d8d2bcf6aa0b2ed10d842540933eda49a5d030",
+      "expected_hash_verified": true
+    },
+    "scaffold_exporter": {
+      "path": "v22_map_scaffold.py",
+      "sha256": "07688589094ee9f7ea805b2e9d1d11cec8a4bd5c5d2cbf8f3d8616927f504350",
+      "expected_sha256": null,
+      "expected_hash_verified": false
+    }
+  },
+  "source_checks": {
+    "semantic_metadata_equality": true,
+    "fixed_compiler_array_equality": {
+      "footprint_known": true,
+      "footprints": true,
+      "object_summary": true,
+      "object_valid": true,
+      "open_space": true,
+      "open_space_known": true,
+      "roads": true,
+      "roads_known": true
+    },
+    "v11_recorded_npz_sha256": "abe88b14efb2885dad9f1525be13af14ef5cf9f34b00c612a1fd8caf15fdffa0",
+    "local_npz_sha256": "6c9cc5fcf2c7f664c0e11adb6a432b086d4cf3876a7050399235d9dffa50c113",
+    "local_npz_matches_v11_recorded_hash": false,
+    "raster_selection": "Existing local archive verified against its own manifest and fixed compiler; v11 inputs/map.npz is not used."
+  },
+  "geometry_sources": {
+    "gray_scaffold": "Existing map annotations, arbitrary display height4, not AI",
+    "candidate_mesh": "TRELLIS.2 native learned geometry and base color, full PBR retained",
+    "retry_road_observation": "Map-defined road floor/air prior, not generated ground truth"
+  },
+  "reference_conflict": "Fixed AI-produced native-street reference may conflict with Map10; not real-site appearance evidence"
+}

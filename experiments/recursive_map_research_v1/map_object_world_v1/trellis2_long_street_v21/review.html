@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><title>v21 — Larger generated street</title>
+<style>body{max-width:1200px;margin:28px auto;background:#202329;color:#eee;font:18px/1.6 sans-serif}a{color:#8bceff}img,video{max-width:100%}small{color:#bbb}</style>
+<h1>v21：更长的原生生成街道</h1><p>同一个TRELLIS.2，一张固定长街参考图，一个固定seed，零训练。建筑、道路和外观由模型一次生成，不是复制旧街区。此页图片和视频均来自独立加载保存的三维资产。</p>
+<p><a href="large_street_100m.glb">下载完整GLB（约108MB，可导入Blender）</a> · <a href="street_20s_24fps.mp4">20秒街内行进与回看</a> · <a href="RESULTS.json">结果与限制</a></p>
+<video controls src="street_20s_24fps.mp4" poster="tour_views/0000.png"></video>
+<p>480帧／24fps；相机在生成道路内前进约90米、转身、返回10米，视高1.6米。以上米制为统一展示尺度：生成场景的最长水平边设为100米，并非测绘结果。小图来自生成资产，不是输入地图。</p>
+<img src="street_contact.jpg"><img src="V17_V21_COMPARISON.jpg"><img src="appearance_contact.jpg">
+<p>局部窗户、植物和墙面仍有模糊／简化；这不是照片级街区，也没有证明Map10地图控制。检查是AI视觉审查，不是人工验收。</p>
+<p>GPU占用165.2秒（含加载与空闲）；一次外部imagegen参考图不计入A800占用。全部GPU任务已结束。</p>
+<details><summary>参考图与生成边界（参考图不是最终3D）</summary><img src="input.png"><p>imagegen只创建条件参考图；TRELLIS.2生成最终几何与外观。源提示词保存在同级参考记录中。无程序化城市、无输出修补、无种子筛选。</p></details>

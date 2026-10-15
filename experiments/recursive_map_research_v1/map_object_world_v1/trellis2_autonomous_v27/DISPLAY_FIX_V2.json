@@ -1,0 +1,30 @@
+{
+  "scope": "Viewer-only appearance correction; not a model or geometry improvement",
+  "asset_sha256_unchanged": "600c1fe6389e7d2b524a3fee285fb01b288c94e3192a4b187bb8630b1e745166",
+  "changes": [
+    "Display base-color sRGB decode before Three.js output conversion; old linear interpretation selectable",
+    "Camera-centered gradient sky, no depth write, no fog",
+    "Neutral map scaffold ground and road palette; grid optionally visible"
+  ],
+  "evidence": [
+    "display_linear_comparison.png",
+    "display_improved.png",
+    "display_improved_lateral.png",
+    "display_scaffold.png"
+  ],
+  "verification": {
+    "javascript_syntax": "PASS",
+    "browser_error_logs": [],
+    "asset_load_hash_verified": true,
+    "color_mode_switch": "PASS",
+    "lateral_camera_movement": "PASS",
+    "grid_toggle_and_return_map": "PASS",
+    "AI_visual_check": "Reduced washed-out colors; visible asset foliage sheets and geometry errors remain. Not human acceptance."
+  },
+  "model_generation_or_training_started": false,
+  "historical_asset_verdict_changed": false,
+  "limitations": [
+    "Display correction does not fix generated green sheets, road obstruction or map alignment",
+    "Browser uses Microsoft software renderer; this change does not establish game-level frame rate"
+  ]
+}

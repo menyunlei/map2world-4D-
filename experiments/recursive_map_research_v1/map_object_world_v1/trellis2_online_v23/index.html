@@ -1,0 +1,14 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>v23 · TRELLIS.2 Online</title><link rel="stylesheet" href="style.css"><script type="importmap">{"imports":{"three":"/vendor/three.module.js"}}</script>
+<aside><small>V23 / CAMERA → ONLINE GENERATION</small><h1>走向下一段街道</h1>
+<p id="note">Native world · v21 原始街道 + 一次在线生成。起点 Z=45，朝向 −Z；前进四次 10 单位即可到达触发线。</p>
+<div class="row"><button id="step">前进 +10</button><button id="side">右移 3</button></div>
+<div class="row"><button id="walk">行走</button><button id="back">转身 180°</button><button id="stop">停止</button></div>
+<div class="row"><button id="home">回起点</button><button id="top">俯视</button></div>
+<label>行走视距（仅显示裁剪，资产不变）<select id="distance"><option value="80">80 展示单位</option><option value="160">160 展示单位</option><option value="300">300 展示单位</option></select></label>
+<p id="trigger">触发：Z ≤ 5，|X| ≤ 25，forward.z ≤ −0.25。实际导航后才上报相机。</p>
+<section aria-live="polite"><div class="status-heading"><b>一次在线生成</b><span id="budget">预算 — / 1</span></div><p id="job">连接状态…</p><p id="stage">GPU 阶段：等待后端状态</p><p id="elapsed">生成耗时：等待后端实测</p><p id="message">越过触发线后由服务器决定启动。</p><p id="connection">API · 127.0.0.1:8768</p></section>
+<section><b>真实资产 / ID + SHA 缓存</b><p id="loading">原始 v21 异步载入中，相机可自由移动。</p><p id="cache">缓存为空</p><p id="hardware"></p></section>
+<details open><summary>操作</summary><p>点击视口，WASD 移动；按住鼠标拖动转头；方向键转头；Q/E 升降；Shift 加速。松键即停。俯视可拖动、滚轮缩放。</p></details>
+<details><summary>测试边界</summary><p>仅一次在线生成，不训练、不追加任务。v21 来自图像条件；本测试不保证地图控制、几何接缝、可通行性或碰撞。新块就绪后原样追加，无简化、补面或修复。</p></details>
+<a href="/assets/v21.glb" download>原始 v21 GLB</a> · <a id="online-download" href="/assets/online.glb" download hidden>在线 GLB</a><button id="metrics">保存实测记录</button></aside>
+<main id="viewport"><div id="hud"><span id="fps">FPS 测量中</span><span id="pos">X−0.7 Y2.73 Z45</span><span id="init">异步载入原始资产</span></div><div id="legend">真实相机 · 后端实测状态 · 新块到达不重置视角</div><canvas id="minimap" width="260" height="300" aria-label="相机、触发线及待生成块位置示意"></canvas><div id="error" role="alert" hidden></div></main><script type="module" src="app.js?v=24"></script></html>

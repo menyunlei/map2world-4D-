@@ -1,0 +1,26 @@
+{
+  "candidate_count": 1,
+  "seed": 942271,
+  "training_updates": 0,
+  "baseline": "Existing v27 attempt1, no repeated equivalent full generation",
+  "selected_change": "Use official native1024 Structure64-to-Shape entry, not1024_cascade Structure32 entry",
+  "hypothesis": "Max pooling64->32 discards vertical subcell support; native64 entry may reduce elevated road surfaces without replacing generated geometry.",
+  "immutable_inputs": {
+    "old_latent": "aaf1891ed6171d9ee568e346f9a05b2b880f251153137e74bc224ec50e67a9a8",
+    "old_mesh": "600c1fe6389e7d2b524a3fee285fb01b288c94e3192a4b187bb8630b1e745166",
+    "queries": "0a9dcbd68d440e233b47f7dbf02d2ad5bd83840201b0e611d31b44a1b406e4fc",
+    "contract": "1cf2a5f432ac32259e7fe23430aa70199cb911278b130f5818835fe0e3309e43",
+    "image": "737aeb8e25fc5d0c98846d912cc61ec6b0179d5e93495f3671f99505d22b6a28"
+  },
+  "success_not_guaranteed": true,
+  "forbidden": [
+    "coordinate/frame shift",
+    "threshold change",
+    "mesh repair",
+    "training",
+    "further retries"
+  ],
+  "single_generation_gpu_seconds_max": 480,
+  "verification_gpu_seconds_max": 90,
+  "interpretation": "Native entry-path intervention bundles support resolution and omission of LR cascade. Not a pure isolated pooling-only or noise-identical causal estimate. No generalization claim."
+}

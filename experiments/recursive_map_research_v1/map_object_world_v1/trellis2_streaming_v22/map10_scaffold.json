@@ -1,0 +1,3444 @@
+{
+  "schema": "trellis2_map10_scaffold_v22",
+  "map_id": "map10",
+  "label": "Map-derived visualization scaffold; not AI-generated geometry",
+  "ai_geometry": false,
+  "training": false,
+  "native_asset_registration": null,
+  "native_asset_relationship": "Independent map visualization layer; no registration to or replacement of the v21 native asset is claimed.",
+  "coordinate_system": {
+    "up_axis": "Y",
+    "polygon_axes": [
+      "x",
+      "z"
+    ],
+    "units": "normalized display units; not meters",
+    "georeferenced": false,
+    "metric": false,
+    "world_span": 100.0,
+    "world_xz_from_source_normalized_xy": "x=100*X; z=-100*Y; y=display height",
+    "axis_meaning": "+x is source image right; +z is source image down; neither is a geographic direction",
+    "ground_y": 0.0,
+    "ground_semantics": "display plane only; no terrain elevation inferred",
+    "normalized_xy_to_world_xz_homogeneous": [
+      [
+        100.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -100.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "world_xz_to_normalized_xy_homogeneous": [
+      [
+        0.01,
+        0.0,
+        0.0
+      ],
+      [
+        -0.0,
+        -0.01,
+        -0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "source_pixels_to_world_xz_homogeneous": [
+      [
+        0.10989010989010989,
+        0.0,
+        -57.912087912087905
+      ],
+      [
+        0.0,
+        0.10989010989010989,
+        -150.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "world_xz_to_source_pixels_homogeneous": [
+      [
+        9.1,
+        0.0,
+        527.0
+      ],
+      [
+        0.0,
+        9.1,
+        1365.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "crop_xyxy_source_px": [
+      72,
+      910,
+      982,
+      1820
+    ],
+    "source_size_wh": [
+      1080,
+      2280
+    ],
+    "source_coordinate_transform": {
+      "axes": "+X right; +Y up in image; Z not annotated",
+      "normalized_xy_range": [
+        -0.5,
+        0.5
+      ],
+      "source_pixels_to_normalized_xy": "X=(u-left)/side-.5; Y=.5-(v-top)/side",
+      "source_pixel_to_normalized_xy_homogeneous": [
+        [
+          0.001098901098901099,
+          0,
+          -0.5791208791208791
+        ],
+        [
+          0,
+          -0.001098901098901099,
+          1.5
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "normalized_xy_to_source_pixel_homogeneous": [
+        [
+          910,
+          0,
+          527.0
+        ],
+        [
+          0,
+          -910,
+          1365.0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "raster_shape_hw": [
+        64,
+        64
+      ],
+      "row0": "-Y; bottom of original source crop",
+      "col0": "-X; left of original source crop",
+      "mapYrow": "increasing",
+      "source_crop_row0": "+Y; top of original source crop; flipped once during export",
+      "native_dense_token_axis_order": "X then Y then Z; Z fastest; raster indexes row=Y, col=X",
+      "raster_pixel_centers_to_source": "u=left+(col+.5)*side/64; v=top+side-(row+.5)*side/64",
+      "raster_pixel_centers_to_normalized": "X=(col+.5)/64-.5; Y=(row+.5)/64-.5",
+      "meaning": "Image affine coordinates only, not surveyed/geographic or metric world registration."
+    }
+  },
+  "bounds": {
+    "minX": -50.0,
+    "maxX": 50.0,
+    "minZ": -50.0,
+    "maxZ": 50.0
+  },
+  "height_policy": {
+    "known": false,
+    "placeholder_height": 4.0,
+    "units": "normalized display units",
+    "meaning": "All four roofs use the same arbitrary extrusion height for visualization only."
+  },
+  "buildings": [
+    {
+      "id": "roof_proxy_01",
+      "label": "gray roof with three skylights",
+      "polygon": [
+        [
+          -32.747252747252745,
+          -36.70329670329671
+        ],
+        [
+          -27.142857142857146,
+          -38.46153846153846
+        ],
+        [
+          -22.857142857142858,
+          -27.252747252747255
+        ],
+        [
+          -28.46153846153846,
+          -25.164835164835164
+        ]
+      ],
+      "holes": [],
+      "center": [
+        -27.80717521029549,
+        -31.87288805809187
+      ],
+      "bounds": {
+        "minX": -32.747252747252745,
+        "maxX": -22.857142857142858,
+        "minZ": -38.46153846153846,
+        "maxZ": -25.164835164835164
+      },
+      "source": {
+        "kind": "existing_manual_roof_proxy",
+        "metadata": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+        "record_index": 0,
+        "record_collection": "objects"
+      },
+      "geometry_label": "Map-derived visualization scaffold; not AI-generated geometry",
+      "ai_geometry": false,
+      "source_polygon_px": [
+        [
+          229,
+          1031
+        ],
+        [
+          280,
+          1015
+        ],
+        [
+          319,
+          1117
+        ],
+        [
+          268,
+          1136
+        ]
+      ],
+      "source_polygon_normalized_xy": [
+        [
+          -0.3274725274725275,
+          0.36703296703296706
+        ],
+        [
+          -0.27142857142857146,
+          0.3846153846153846
+        ],
+        [
+          -0.2285714285714286,
+          0.27252747252747256
+        ],
+        [
+          -0.2846153846153846,
+          0.25164835164835164
+        ]
+      ],
+      "visible_interior_confidence": 0.65,
+      "uncertainty": "Roof edge and neighboring attachment/property boundary are uncertain; skylights retained as roof support.",
+      "height": 4.0,
+      "height_known": false,
+      "observed_height": null,
+      "height_source": "uniform visualization placeholder; not measured or inferred",
+      "base_y": 0.0,
+      "building_identity_verified": false,
+      "chunk_id": "map10:0:0",
+      "chunk_ids": [
+        "map10:0:0",
+        "map10:1:0"
+      ]
+    },
+    {
+      "id": "roof_proxy_02",
+      "label": "lower gray gable roof",
+      "polygon": [
+        [
+          -7.0329670329670355,
+          -27.802197802197803
+        ],
+        [
+          1.538461538461533,
+          -30.54945054945055
+        ],
+        [
+          5.934065934065935,
+          -22.967032967032967
+        ],
+        [
+          -4.395604395604397,
+          -19.78021978021978
+        ]
+      ],
+      "holes": [],
+      "center": [
+        -0.92592534199421,
+        -25.159937145589936
+      ],
+      "bounds": {
+        "minX": -7.0329670329670355,
+        "maxX": 5.934065934065935,
+        "minZ": -30.54945054945055,
+        "maxZ": -19.78021978021978
+      },
+      "source": {
+        "kind": "existing_manual_roof_proxy",
+        "metadata": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+        "record_index": 1,
+        "record_collection": "objects"
+      },
+      "geometry_label": "Map-derived visualization scaffold; not AI-generated geometry",
+      "ai_geometry": false,
+      "source_polygon_px": [
+        [
+          463,
+          1112
+        ],
+        [
+          541,
+          1087
+        ],
+        [
+          581,
+          1156
+        ],
+        [
+          487,
+          1185
+        ]
+      ],
+      "source_polygon_normalized_xy": [
+        [
+          -0.07032967032967036,
+          0.27802197802197803
+        ],
+        [
+          0.01538461538461533,
+          0.3054945054945055
+        ],
+        [
+          0.05934065934065935,
+          0.2296703296703297
+        ],
+        [
+          -0.043956043956043966,
+          0.19780219780219782
+        ]
+      ],
+      "visible_interior_confidence": 0.55,
+      "uncertainty": "Attached terrace identity/extent is unverified; yellow UI cross occludes the interior and has zero confidence.",
+      "height": 4.0,
+      "height_known": false,
+      "observed_height": null,
+      "height_source": "uniform visualization placeholder; not measured or inferred",
+      "base_y": 0.0,
+      "building_identity_verified": false,
+      "chunk_id": "map10:1:0",
+      "chunk_ids": [
+        "map10:1:0",
+        "map10:2:0",
+        "map10:1:1",
+        "map10:2:1"
+      ]
+    },
+    {
+      "id": "roof_proxy_03",
+      "label": "small domed roof structure",
+      "polygon": [
+        [
+          -23.846153846153843,
+          15.604395604395604
+        ],
+        [
+          -18.131868131868135,
+          13.406593406593403
+        ],
+        [
+          -12.967032967032965,
+          24.395604395604398
+        ],
+        [
+          -18.571428571428573,
+          27.692307692307693
+        ]
+      ],
+      "holes": [],
+      "center": [
+        -18.393332722369866,
+        20.34741604112339
+      ],
+      "bounds": {
+        "minX": -23.846153846153843,
+        "maxX": -12.967032967032965,
+        "minZ": 13.406593406593403,
+        "maxZ": 27.692307692307693
+      },
+      "source": {
+        "kind": "existing_manual_roof_proxy",
+        "metadata": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+        "record_index": 2,
+        "record_collection": "objects"
+      },
+      "geometry_label": "Map-derived visualization scaffold; not AI-generated geometry",
+      "ai_geometry": false,
+      "source_polygon_px": [
+        [
+          310,
+          1507
+        ],
+        [
+          362,
+          1487
+        ],
+        [
+          409,
+          1587
+        ],
+        [
+          358,
+          1617
+        ]
+      ],
+      "source_polygon_normalized_xy": [
+        [
+          -0.23846153846153845,
+          -0.15604395604395604
+        ],
+        [
+          -0.18131868131868134,
+          -0.13406593406593403
+        ],
+        [
+          -0.12967032967032965,
+          -0.24395604395604398
+        ],
+        [
+          -0.18571428571428572,
+          -0.27692307692307694
+        ]
+      ],
+      "visible_interior_confidence": 0.55,
+      "uncertainty": "Domed roof and surrounding flat roof are treated as one visible roof structure; tree-fringe/boundary uncertainty remains.",
+      "height": 4.0,
+      "height_known": false,
+      "observed_height": null,
+      "height_source": "uniform visualization placeholder; not measured or inferred",
+      "base_y": 0.0,
+      "building_identity_verified": false,
+      "chunk_id": "map10:1:2",
+      "chunk_ids": [
+        "map10:1:2",
+        "map10:1:3"
+      ]
+    },
+    {
+      "id": "roof_proxy_04",
+      "label": "large red hall roof",
+      "polygon": [
+        [
+          -8.021978021978022,
+          -5.054945054945054
+        ],
+        [
+          8.681318681318684,
+          -11.538461538461537
+        ],
+        [
+          24.945054945054945,
+          22.747252747252745
+        ],
+        [
+          6.373626373626373,
+          29.670329670329664
+        ]
+      ],
+      "holes": [],
+      "center": [
+        8.132224442478831,
+        9.24010512841966
+      ],
+      "bounds": {
+        "minX": -8.021978021978022,
+        "maxX": 24.945054945054945,
+        "minZ": -11.538461538461537,
+        "maxZ": 29.670329670329664
+      },
+      "source": {
+        "kind": "existing_manual_roof_proxy",
+        "metadata": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+        "record_index": 3,
+        "record_collection": "objects"
+      },
+      "geometry_label": "Map-derived visualization scaffold; not AI-generated geometry",
+      "ai_geometry": false,
+      "source_polygon_px": [
+        [
+          454,
+          1319
+        ],
+        [
+          606,
+          1260
+        ],
+        [
+          754,
+          1572
+        ],
+        [
+          585,
+          1635
+        ]
+      ],
+      "source_polygon_normalized_xy": [
+        [
+          -0.08021978021978021,
+          0.050549450549450536
+        ],
+        [
+          0.08681318681318684,
+          0.11538461538461536
+        ],
+        [
+          0.24945054945054945,
+          -0.22747252747252744
+        ],
+        [
+          0.06373626373626373,
+          -0.29670329670329665
+        ]
+      ],
+      "visible_interior_confidence": 0.7,
+      "uncertainty": "Primary visible gable roof only; attached pale/green roof structures are unannotated. Roof overhang, perspective, tree fringe, and full building footprint are unresolved; dark skylight is not a verified hole.",
+      "height": 4.0,
+      "height_known": false,
+      "observed_height": null,
+      "height_source": "uniform visualization placeholder; not measured or inferred",
+      "base_y": 0.0,
+      "building_identity_verified": false,
+      "chunk_id": "map10:2:2",
+      "chunk_ids": [
+        "map10:1:1",
+        "map10:2:1",
+        "map10:1:2",
+        "map10:2:2",
+        "map10:1:3",
+        "map10:2:3"
+      ]
+    }
+  ],
+  "roads": [
+    {
+      "id": "road_visible_01",
+      "label": "road_visible_01",
+      "polygon": [
+        [
+          0.439560439560438,
+          -47.8021978021978
+        ],
+        [
+          9.78021978021978,
+          -49.45054945054945
+        ],
+        [
+          15.604395604395604,
+          -34.94505494505494
+        ],
+        [
+          7.692307692307687,
+          -31.538461538461537
+        ]
+      ],
+      "holes": [],
+      "center": [
+        8.250401134246259,
+        -40.9976094221755
+      ],
+      "bounds": {
+        "minX": 0.439560439560438,
+        "maxX": 15.604395604395604,
+        "minZ": -49.45054945054945,
+        "maxZ": -31.538461538461537
+      },
+      "source": {
+        "kind": "existing_manual_road_patch",
+        "metadata": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+        "record_index": 0,
+        "record_collection": "roads"
+      },
+      "geometry_label": "Map-derived visualization scaffold; not AI-generated geometry",
+      "ai_geometry": false,
+      "source_polygon_px": [
+        [
+          531,
+          930
+        ],
+        [
+          616,
+          915
+        ],
+        [
+          669,
+          1047
+        ],
+        [
+          597,
+          1078
+        ]
+      ],
+      "source_polygon_normalized_xy": [
+        [
+          0.00439560439560438,
+          0.47802197802197804
+        ],
+        [
+          0.09780219780219779,
+          0.4945054945054945
+        ],
+        [
+          0.15604395604395604,
+          0.34945054945054943
+        ],
+        [
+          0.07692307692307687,
+          0.3153846153846154
+        ]
+      ],
+      "visible_interior_confidence": 0.75,
+      "uncertainty": "Visible upper asphalt lane patch, including shadow; not a complete road width or network.",
+      "base_y": 0.0,
+      "connected_network_known": false,
+      "chunk_id": "map10:2:0",
+      "chunk_ids": [
+        "map10:2:0"
+      ]
+    },
+    {
+      "id": "road_visible_02",
+      "label": "road_visible_02",
+      "polygon": [
+        [
+          20.549450549450555,
+          -15.054945054945057
+        ],
+        [
+          25.274725274725274,
+          -16.703296703296704
+        ],
+        [
+          28.68131868131868,
+          -10.109890109890108
+        ],
+        [
+          23.73626373626374,
+          -8.021978021978022
+        ]
+      ],
+      "holes": [],
+      "center": [
+        24.56347132381723,
+        -12.422916284868107
+      ],
+      "bounds": {
+        "minX": 20.549450549450555,
+        "maxX": 28.68131868131868,
+        "minZ": -16.703296703296704,
+        "maxZ": -8.021978021978022
+      },
+      "source": {
+        "kind": "existing_manual_road_patch",
+        "metadata": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+        "record_index": 1,
+        "record_collection": "roads"
+      },
+      "geometry_label": "Map-derived visualization scaffold; not AI-generated geometry",
+      "ai_geometry": false,
+      "source_polygon_px": [
+        [
+          714,
+          1228
+        ],
+        [
+          757,
+          1213
+        ],
+        [
+          788,
+          1273
+        ],
+        [
+          743,
+          1292
+        ]
+      ],
+      "source_polygon_normalized_xy": [
+        [
+          0.20549450549450554,
+          0.15054945054945057
+        ],
+        [
+          0.25274725274725274,
+          0.16703296703296705
+        ],
+        [
+          0.2868131868131868,
+          0.10109890109890107
+        ],
+        [
+          0.2373626373626374,
+          0.08021978021978021
+        ]
+      ],
+      "visible_interior_confidence": 0.8,
+      "uncertainty": "Selected visible central asphalt patch between vehicles; adjacent parked/occluded areas are unknown.",
+      "base_y": 0.0,
+      "connected_network_known": false,
+      "chunk_id": "map10:2:1",
+      "chunk_ids": [
+        "map10:2:1",
+        "map10:3:1"
+      ]
+    },
+    {
+      "id": "road_visible_03",
+      "label": "road_visible_03",
+      "polygon": [
+        [
+          29.120879120879117,
+          9.120879120879122
+        ],
+        [
+          32.96703296703297,
+          7.692307692307687
+        ],
+        [
+          36.81318681318682,
+          16.153846153846153
+        ],
+        [
+          33.07692307692308,
+          18.021978021978025
+        ]
+      ],
+      "holes": [],
+      "center": [
+        32.9859551130269,
+        12.76769271244408
+      ],
+      "bounds": {
+        "minX": 29.120879120879117,
+        "maxX": 36.81318681318682,
+        "minZ": 7.692307692307687,
+        "maxZ": 18.021978021978025
+      },
+      "source": {
+        "kind": "existing_manual_road_patch",
+        "metadata": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+        "record_index": 2,
+        "record_collection": "roads"
+      },
+      "geometry_label": "Map-derived visualization scaffold; not AI-generated geometry",
+      "ai_geometry": false,
+      "source_polygon_px": [
+        [
+          792,
+          1448
+        ],
+        [
+          827,
+          1435
+        ],
+        [
+          862,
+          1512
+        ],
+        [
+          828,
+          1529
+        ]
+      ],
+      "source_polygon_normalized_xy": [
+        [
+          0.2912087912087912,
+          -0.09120879120879122
+        ],
+        [
+          0.3296703296703297,
+          -0.07692307692307687
+        ],
+        [
+          0.36813186813186816,
+          -0.16153846153846152
+        ],
+        [
+          0.3307692307692308,
+          -0.18021978021978025
+        ]
+      ],
+      "visible_interior_confidence": 0.8,
+      "uncertainty": "Selected visible lane patch; not extrapolated through vehicle or tree occlusions.",
+      "base_y": 0.0,
+      "connected_network_known": false,
+      "chunk_id": "map10:3:2",
+      "chunk_ids": [
+        "map10:3:2"
+      ]
+    },
+    {
+      "id": "road_visible_04",
+      "label": "road_visible_04",
+      "polygon": [
+        [
+          38.02197802197802,
+          26.703296703296708
+        ],
+        [
+          41.208791208791204,
+          25.494505494505493
+        ],
+        [
+          45.05494505494505,
+          34.175824175824175
+        ],
+        [
+          41.86813186813186,
+          35.49450549450549
+        ]
+      ],
+      "holes": [],
+      "center": [
+        41.539760092197355,
+        30.477570189534745
+      ],
+      "bounds": {
+        "minX": 38.02197802197802,
+        "maxX": 45.05494505494505,
+        "minZ": 25.494505494505493,
+        "maxZ": 35.49450549450549
+      },
+      "source": {
+        "kind": "existing_manual_road_patch",
+        "metadata": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+        "record_index": 3,
+        "record_collection": "roads"
+      },
+      "geometry_label": "Map-derived visualization scaffold; not AI-generated geometry",
+      "ai_geometry": false,
+      "source_polygon_px": [
+        [
+          873,
+          1608
+        ],
+        [
+          902,
+          1597
+        ],
+        [
+          937,
+          1676
+        ],
+        [
+          908,
+          1688
+        ]
+      ],
+      "source_polygon_normalized_xy": [
+        [
+          0.3802197802197802,
+          -0.2670329670329671
+        ],
+        [
+          0.41208791208791207,
+          -0.2549450549450549
+        ],
+        [
+          0.4505494505494505,
+          -0.34175824175824177
+        ],
+        [
+          0.41868131868131864,
+          -0.3549450549450549
+        ]
+      ],
+      "visible_interior_confidence": 0.75,
+      "uncertainty": "Selected lower asphalt patch; curb/traffic occlusions and untraced continuation remain unknown.",
+      "base_y": 0.0,
+      "connected_network_known": false,
+      "chunk_id": "map10:3:3",
+      "chunk_ids": [
+        "map10:3:3"
+      ]
+    }
+  ],
+  "zero_confidence_occlusions": [
+    {
+      "id": "yellow_UI_cross_horizontal",
+      "polygon": [
+        [
+          -3.076923076923066,
+          -25.494505494505493
+        ],
+        [
+          4.505494505494512,
+          -25.494505494505493
+        ],
+        [
+          4.505494505494512,
+          -24.17582417582418
+        ],
+        [
+          -3.076923076923066,
+          -24.17582417582418
+        ]
+      ],
+      "known": 0.0,
+      "reason": "Screenshot UI obscures roof evidence; confidence is zero, not a roof hole."
+    },
+    {
+      "id": "yellow_UI_cross_vertical",
+      "polygon": [
+        [
+          0.4395604395604491,
+          -28.7912087912088
+        ],
+        [
+          2.0879120879120916,
+          -28.7912087912088
+        ],
+        [
+          2.0879120879120916,
+          -20.989010989010982
+        ],
+        [
+          0.4395604395604491,
+          -20.989010989010982
+        ]
+      ],
+      "known": 0.0,
+      "reason": "Screenshot UI obscures roof evidence; confidence is zero, not a roof hole."
+    }
+  ],
+  "road_grid": {
+    "shape": [
+      64,
+      64
+    ],
+    "encoding": "sparse cells; original float32 values preserved as JSON numbers",
+    "cell_size": 1.5625,
+    "origin_corner_xz": [
+      -50.0,
+      50.0
+    ],
+    "column_step_xz": [
+      1.5625,
+      0.0
+    ],
+    "row_step_xz": [
+      0.0,
+      -1.5625
+    ],
+    "center_formula": "origin + (col+0.5)*column_step + (row+0.5)*row_step",
+    "default_coverage": 0.0,
+    "default_known": 0.0,
+    "default_semantics": "unknown; never confirmed empty or traversable",
+    "coverage_field": "roads[0,row,col]",
+    "known_field": "roads_known[0,row,col]",
+    "source_sha256": "6c9cc5fcf2c7f664c0e11adb6a432b086d4cf3876a7050399235d9dffa50c113",
+    "cells": [
+      {
+        "id": "map10:road_cell:9:58",
+        "row": 9,
+        "col": 58,
+        "center": [
+          41.40625,
+          35.15625
+        ],
+        "coverage": 0.2551020383834839,
+        "known": 0.03826530650258064,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:9:59",
+        "row": 9,
+        "col": 59,
+        "center": [
+          42.96875,
+          35.15625
+        ],
+        "coverage": 0.4183673560619354,
+        "known": 0.09183673560619354,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:9:60",
+        "row": 9,
+        "col": 60,
+        "center": [
+          44.53125,
+          35.15625
+        ],
+        "coverage": 0.05612245202064514,
+        "known": 0.0,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:10:58",
+        "row": 10,
+        "col": 58,
+        "center": [
+          41.40625,
+          33.59375
+        ],
+        "coverage": 0.7448979616165161,
+        "known": 0.32908162474632263,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:10:59",
+        "row": 10,
+        "col": 59,
+        "center": [
+          42.96875,
+          33.59375
+        ],
+        "coverage": 1.0,
+        "known": 0.7423469424247742,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:10:60",
+        "row": 10,
+        "col": 60,
+        "center": [
+          44.53125,
+          33.59375
+        ],
+        "coverage": 0.668367326259613,
+        "known": 0.21045918762683868,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:11:57",
+        "row": 11,
+        "col": 57,
+        "center": [
+          39.84375,
+          32.03125
+        ],
+        "coverage": 0.18666666746139526,
+        "known": 0.013333333656191826,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:11:58",
+        "row": 11,
+        "col": 58,
+        "center": [
+          41.40625,
+          32.03125
+        ],
+        "coverage": 1.0,
+        "known": 0.6535714268684387,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:11:59",
+        "row": 11,
+        "col": 59,
+        "center": [
+          42.96875,
+          32.03125
+        ],
+        "coverage": 1.0,
+        "known": 0.675000011920929,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:11:60",
+        "row": 11,
+        "col": 60,
+        "center": [
+          44.53125,
+          32.03125
+        ],
+        "coverage": 0.2380952388048172,
+        "known": 0.02142857201397419,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:12:57",
+        "row": 12,
+        "col": 57,
+        "center": [
+          39.84375,
+          30.46875
+        ],
+        "coverage": 0.6095238327980042,
+        "known": 0.23928572237491608,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:12:58",
+        "row": 12,
+        "col": 58,
+        "center": [
+          41.40625,
+          30.46875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:12:59",
+        "row": 12,
+        "col": 59,
+        "center": [
+          42.96875,
+          30.46875
+        ],
+        "coverage": 0.7755101919174194,
+        "known": 0.3520408272743225,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:13:56",
+        "row": 13,
+        "col": 56,
+        "center": [
+          38.28125,
+          28.90625
+        ],
+        "coverage": 0.06122449040412903,
+        "known": 0.0,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:13:57",
+        "row": 13,
+        "col": 57,
+        "center": [
+          39.84375,
+          28.90625
+        ],
+        "coverage": 0.9571428298950195,
+        "known": 0.5464285612106323,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:13:58",
+        "row": 13,
+        "col": 58,
+        "center": [
+          41.40625,
+          28.90625
+        ],
+        "coverage": 1.0,
+        "known": 0.7193877696990967,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:13:59",
+        "row": 13,
+        "col": 59,
+        "center": [
+          42.96875,
+          28.90625
+        ],
+        "coverage": 0.34183675050735474,
+        "known": 0.0535714291036129,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:14:56",
+        "row": 14,
+        "col": 56,
+        "center": [
+          38.28125,
+          27.34375
+        ],
+        "coverage": 0.44897958636283875,
+        "known": 0.07270408421754837,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:14:57",
+        "row": 14,
+        "col": 57,
+        "center": [
+          39.84375,
+          27.34375
+        ],
+        "coverage": 1.0,
+        "known": 0.7321428656578064,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:14:58",
+        "row": 14,
+        "col": 58,
+        "center": [
+          41.40625,
+          27.34375
+        ],
+        "coverage": 0.8826530575752258,
+        "known": 0.44005101919174194,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:14:59",
+        "row": 14,
+        "col": 59,
+        "center": [
+          42.96875,
+          27.34375
+        ],
+        "coverage": 0.015306123532354832,
+        "known": 0.0,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:15:56",
+        "row": 15,
+        "col": 56,
+        "center": [
+          38.28125,
+          25.78125
+        ],
+        "coverage": 0.0357142873108387,
+        "known": 0.0,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:15:57",
+        "row": 15,
+        "col": 57,
+        "center": [
+          39.84375,
+          25.78125
+        ],
+        "coverage": 0.380952388048172,
+        "known": 0.07499999552965164,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:15:58",
+        "row": 15,
+        "col": 58,
+        "center": [
+          41.40625,
+          25.78125
+        ],
+        "coverage": 0.34183675050735474,
+        "known": 0.07270408421754837,
+        "chunk_id": "map10:3:3"
+      },
+      {
+        "id": "map10:road_cell:20:52",
+        "row": 20,
+        "col": 52,
+        "center": [
+          32.03125,
+          17.96875
+        ],
+        "coverage": 0.008888889104127884,
+        "known": 0.0,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:20:53",
+        "row": 20,
+        "col": 53,
+        "center": [
+          33.59375,
+          17.96875
+        ],
+        "coverage": 0.34285715222358704,
+        "known": 0.030476192012429237,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:20:54",
+        "row": 20,
+        "col": 54,
+        "center": [
+          35.15625,
+          17.96875
+        ],
+        "coverage": 0.01904761977493763,
+        "known": 0.0,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:21:52",
+        "row": 21,
+        "col": 52,
+        "center": [
+          32.03125,
+          16.40625
+        ],
+        "coverage": 0.3142857253551483,
+        "known": 0.04952380806207657,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:21:53",
+        "row": 21,
+        "col": 53,
+        "center": [
+          33.59375,
+          16.40625
+        ],
+        "coverage": 1.0,
+        "known": 0.7387755513191223,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:21:54",
+        "row": 21,
+        "col": 54,
+        "center": [
+          35.15625,
+          16.40625
+        ],
+        "coverage": 0.8724489808082581,
+        "known": 0.4571428596973419,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:21:55",
+        "row": 21,
+        "col": 55,
+        "center": [
+          36.71875,
+          16.40625
+        ],
+        "coverage": 0.2551020383834839,
+        "known": 0.03265305981040001,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:22:52",
+        "row": 22,
+        "col": 52,
+        "center": [
+          32.03125,
+          14.84375
+        ],
+        "coverage": 0.723809540271759,
+        "known": 0.3504762053489685,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:22:53",
+        "row": 22,
+        "col": 53,
+        "center": [
+          33.59375,
+          14.84375
+        ],
+        "coverage": 1.0,
+        "known": 0.800000011920929,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:22:54",
+        "row": 22,
+        "col": 54,
+        "center": [
+          35.15625,
+          14.84375
+        ],
+        "coverage": 1.0,
+        "known": 0.6857143044471741,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:22:55",
+        "row": 22,
+        "col": 55,
+        "center": [
+          36.71875,
+          14.84375
+        ],
+        "coverage": 0.1785714328289032,
+        "known": 0.008163264952600002,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:23:51",
+        "row": 23,
+        "col": 51,
+        "center": [
+          30.46875,
+          13.28125
+        ],
+        "coverage": 0.15816326439380646,
+        "known": 0.004081632476300001,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:23:52",
+        "row": 23,
+        "col": 52,
+        "center": [
+          32.03125,
+          13.28125
+        ],
+        "coverage": 0.9952380657196045,
+        "known": 0.6780952215194702,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:23:53",
+        "row": 23,
+        "col": 53,
+        "center": [
+          33.59375,
+          13.28125
+        ],
+        "coverage": 1.0,
+        "known": 0.800000011920929,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:23:54",
+        "row": 23,
+        "col": 54,
+        "center": [
+          35.15625,
+          13.28125
+        ],
+        "coverage": 0.7244898080825806,
+        "known": 0.3306122422218323,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:24:51",
+        "row": 24,
+        "col": 51,
+        "center": [
+          30.46875,
+          11.71875
+        ],
+        "coverage": 0.5918367505073547,
+        "known": 0.22857142984867096,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:24:52",
+        "row": 24,
+        "col": 52,
+        "center": [
+          32.03125,
+          11.71875
+        ],
+        "coverage": 1.0,
+        "known": 0.800000011920929,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:24:53",
+        "row": 24,
+        "col": 53,
+        "center": [
+          33.59375,
+          11.71875
+        ],
+        "coverage": 1.0,
+        "known": 0.7346938848495483,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:24:54",
+        "row": 24,
+        "col": 54,
+        "center": [
+          35.15625,
+          11.71875
+        ],
+        "coverage": 0.27040818333625793,
+        "known": 0.02857142873108387,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:25:50",
+        "row": 25,
+        "col": 50,
+        "center": [
+          28.90625,
+          10.15625
+        ],
+        "coverage": 0.09047619253396988,
+        "known": 0.0,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:25:51",
+        "row": 25,
+        "col": 51,
+        "center": [
+          30.46875,
+          10.15625
+        ],
+        "coverage": 0.9666666388511658,
+        "known": 0.5980952382087708,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:25:52",
+        "row": 25,
+        "col": 52,
+        "center": [
+          32.03125,
+          10.15625
+        ],
+        "coverage": 1.0,
+        "known": 0.800000011920929,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:25:53",
+        "row": 25,
+        "col": 53,
+        "center": [
+          33.59375,
+          10.15625
+        ],
+        "coverage": 0.7952380776405334,
+        "known": 0.392380952835083,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:26:50",
+        "row": 26,
+        "col": 50,
+        "center": [
+          28.90625,
+          8.59375
+        ],
+        "coverage": 0.0714285746216774,
+        "known": 0.0,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:26:51",
+        "row": 26,
+        "col": 51,
+        "center": [
+          30.46875,
+          8.59375
+        ],
+        "coverage": 0.4642857313156128,
+        "known": 0.13469387590885162,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:26:52",
+        "row": 26,
+        "col": 52,
+        "center": [
+          32.03125,
+          8.59375
+        ],
+        "coverage": 0.8428571224212646,
+        "known": 0.43809524178504944,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:26:53",
+        "row": 26,
+        "col": 53,
+        "center": [
+          33.59375,
+          8.59375
+        ],
+        "coverage": 0.33163267374038696,
+        "known": 0.04897959157824516,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:27:53",
+        "row": 27,
+        "col": 53,
+        "center": [
+          33.59375,
+          7.03125
+        ],
+        "coverage": 0.0051020411774516106,
+        "known": 0.0,
+        "chunk_id": "map10:3:2"
+      },
+      {
+        "id": "map10:road_cell:37:46",
+        "row": 37,
+        "col": 46,
+        "center": [
+          22.65625,
+          -8.59375
+        ],
+        "coverage": 0.030612247064709663,
+        "known": 0.0,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:37:47",
+        "row": 37,
+        "col": 47,
+        "center": [
+          24.21875,
+          -8.59375
+        ],
+        "coverage": 0.6666666865348816,
+        "known": 0.2209523767232895,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:37:48",
+        "row": 37,
+        "col": 48,
+        "center": [
+          25.78125,
+          -8.59375
+        ],
+        "coverage": 0.2806122601032257,
+        "known": 0.03265306353569031,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:37:49",
+        "row": 37,
+        "col": 49,
+        "center": [
+          27.34375,
+          -8.59375
+        ],
+        "coverage": 0.0051020411774516106,
+        "known": 0.0,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:38:46",
+        "row": 38,
+        "col": 46,
+        "center": [
+          22.65625,
+          -10.15625
+        ],
+        "coverage": 0.41904762387275696,
+        "known": 0.09904762357473373,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:38:47",
+        "row": 38,
+        "col": 47,
+        "center": [
+          24.21875,
+          -10.15625
+        ],
+        "coverage": 1.0,
+        "known": 0.7857778072357178,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:38:48",
+        "row": 38,
+        "col": 48,
+        "center": [
+          25.78125,
+          -10.15625
+        ],
+        "coverage": 1.0,
+        "known": 0.7504761815071106,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:38:49",
+        "row": 38,
+        "col": 49,
+        "center": [
+          27.34375,
+          -10.15625
+        ],
+        "coverage": 0.8666666746139526,
+        "known": 0.4228571653366089,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:38:50",
+        "row": 38,
+        "col": 50,
+        "center": [
+          28.90625,
+          -10.15625
+        ],
+        "coverage": 0.13809524476528168,
+        "known": 0.0,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:39:45",
+        "row": 39,
+        "col": 45,
+        "center": [
+          21.09375,
+          -11.71875
+        ],
+        "coverage": 0.010204082354903221,
+        "known": 0.0,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:39:46",
+        "row": 39,
+        "col": 46,
+        "center": [
+          22.65625,
+          -11.71875
+        ],
+        "coverage": 0.8724489808082581,
+        "known": 0.4612244963645935,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:39:47",
+        "row": 39,
+        "col": 47,
+        "center": [
+          24.21875,
+          -11.71875
+        ],
+        "coverage": 1.0,
+        "known": 0.800000011920929,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:39:48",
+        "row": 39,
+        "col": 48,
+        "center": [
+          25.78125,
+          -11.71875
+        ],
+        "coverage": 1.0,
+        "known": 0.800000011920929,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:39:49",
+        "row": 39,
+        "col": 49,
+        "center": [
+          27.34375,
+          -11.71875
+        ],
+        "coverage": 0.8010203838348389,
+        "known": 0.37959185242652893,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:39:50",
+        "row": 39,
+        "col": 50,
+        "center": [
+          28.90625,
+          -11.71875
+        ],
+        "coverage": 0.0051020411774516106,
+        "known": 0.0,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:40:45",
+        "row": 40,
+        "col": 45,
+        "center": [
+          21.09375,
+          -13.28125
+        ],
+        "coverage": 0.34183675050735474,
+        "known": 0.05714285746216774,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:40:46",
+        "row": 40,
+        "col": 46,
+        "center": [
+          22.65625,
+          -13.28125
+        ],
+        "coverage": 1.0,
+        "known": 0.7632653117179871,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:40:47",
+        "row": 40,
+        "col": 47,
+        "center": [
+          24.21875,
+          -13.28125
+        ],
+        "coverage": 1.0,
+        "known": 0.800000011920929,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:40:48",
+        "row": 40,
+        "col": 48,
+        "center": [
+          25.78125,
+          -13.28125
+        ],
+        "coverage": 1.0,
+        "known": 0.7346938848495483,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:40:49",
+        "row": 40,
+        "col": 49,
+        "center": [
+          27.34375,
+          -13.28125
+        ],
+        "coverage": 0.2857142984867096,
+        "known": 0.0367346927523613,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:41:45",
+        "row": 41,
+        "col": 45,
+        "center": [
+          21.09375,
+          -14.84375
+        ],
+        "coverage": 0.5918367505073547,
+        "known": 0.1795918345451355,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:41:46",
+        "row": 41,
+        "col": 46,
+        "center": [
+          22.65625,
+          -14.84375
+        ],
+        "coverage": 0.9948979616165161,
+        "known": 0.6612244844436646,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:41:47",
+        "row": 41,
+        "col": 47,
+        "center": [
+          24.21875,
+          -14.84375
+        ],
+        "coverage": 1.0,
+        "known": 0.800000011920929,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:41:48",
+        "row": 41,
+        "col": 48,
+        "center": [
+          25.78125,
+          -14.84375
+        ],
+        "coverage": 0.7704081535339355,
+        "known": 0.3551020622253418,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:42:46",
+        "row": 42,
+        "col": 46,
+        "center": [
+          22.65625,
+          -16.40625
+        ],
+        "coverage": 0.12244898080825806,
+        "known": 0.0,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:42:47",
+        "row": 42,
+        "col": 47,
+        "center": [
+          24.21875,
+          -16.40625
+        ],
+        "coverage": 0.4761904776096344,
+        "known": 0.15238095819950104,
+        "chunk_id": "map10:2:1"
+      },
+      {
+        "id": "map10:road_cell:42:48",
+        "row": 42,
+        "col": 48,
+        "center": [
+          25.78125,
+          -16.40625
+        ],
+        "coverage": 0.22448979318141937,
+        "known": 0.02448979578912258,
+        "chunk_id": "map10:3:1"
+      },
+      {
+        "id": "map10:road_cell:52:36",
+        "row": 52,
+        "col": 36,
+        "center": [
+          7.03125,
+          -32.03125
+        ],
+        "coverage": 0.20952381193637848,
+        "known": 0.014285714365541935,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:52:37",
+        "row": 52,
+        "col": 37,
+        "center": [
+          8.59375,
+          -32.03125
+        ],
+        "coverage": 0.5666666626930237,
+        "known": 0.20714285969734192,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:52:38",
+        "row": 52,
+        "col": 38,
+        "center": [
+          10.15625,
+          -32.03125
+        ],
+        "coverage": 0.15555556118488312,
+        "known": 0.006666666828095913,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:53:36",
+        "row": 53,
+        "col": 36,
+        "center": [
+          7.03125,
+          -33.59375
+        ],
+        "coverage": 0.6734693646430969,
+        "known": 0.27551019191741943,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:53:37",
+        "row": 53,
+        "col": 37,
+        "center": [
+          8.59375,
+          -33.59375
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:53:38",
+        "row": 53,
+        "col": 38,
+        "center": [
+          10.15625,
+          -33.59375
+        ],
+        "coverage": 0.9952380657196045,
+        "known": 0.6357142925262451,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:53:39",
+        "row": 53,
+        "col": 39,
+        "center": [
+          11.71875,
+          -33.59375
+        ],
+        "coverage": 0.7193877696990967,
+        "known": 0.30994898080825806,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:53:40",
+        "row": 53,
+        "col": 40,
+        "center": [
+          13.28125,
+          -33.59375
+        ],
+        "coverage": 0.2908163368701935,
+        "known": 0.03443877398967743,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:53:41",
+        "row": 53,
+        "col": 41,
+        "center": [
+          14.84375,
+          -33.59375
+        ],
+        "coverage": 0.0051020411774516106,
+        "known": 0.0,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:54:35",
+        "row": 54,
+        "col": 35,
+        "center": [
+          5.46875,
+          -35.15625
+        ],
+        "coverage": 0.13265307247638702,
+        "known": 0.0,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:54:36",
+        "row": 54,
+        "col": 36,
+        "center": [
+          7.03125,
+          -35.15625
+        ],
+        "coverage": 0.9897959232330322,
+        "known": 0.6045918464660645,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:54:37",
+        "row": 54,
+        "col": 37,
+        "center": [
+          8.59375,
+          -35.15625
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:54:38",
+        "row": 54,
+        "col": 38,
+        "center": [
+          10.15625,
+          -35.15625
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:54:39",
+        "row": 54,
+        "col": 39,
+        "center": [
+          11.71875,
+          -35.15625
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:54:40",
+        "row": 54,
+        "col": 40,
+        "center": [
+          13.28125,
+          -35.15625
+        ],
+        "coverage": 1.0,
+        "known": 0.704081654548645,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:54:41",
+        "row": 54,
+        "col": 41,
+        "center": [
+          14.84375,
+          -35.15625
+        ],
+        "coverage": 0.7755101919174194,
+        "known": 0.2678571343421936,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:55:35",
+        "row": 55,
+        "col": 35,
+        "center": [
+          5.46875,
+          -36.71875
+        ],
+        "coverage": 0.5714285969734192,
+        "known": 0.19897958636283875,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:55:36",
+        "row": 55,
+        "col": 36,
+        "center": [
+          7.03125,
+          -36.71875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:55:37",
+        "row": 55,
+        "col": 37,
+        "center": [
+          8.59375,
+          -36.71875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:55:38",
+        "row": 55,
+        "col": 38,
+        "center": [
+          10.15625,
+          -36.71875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:55:39",
+        "row": 55,
+        "col": 39,
+        "center": [
+          11.71875,
+          -36.71875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:55:40",
+        "row": 55,
+        "col": 40,
+        "center": [
+          13.28125,
+          -36.71875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:55:41",
+        "row": 55,
+        "col": 41,
+        "center": [
+          14.84375,
+          -36.71875
+        ],
+        "coverage": 0.5408163070678711,
+        "known": 0.18367347121238708,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:56:34",
+        "row": 56,
+        "col": 34,
+        "center": [
+          3.90625,
+          -38.28125
+        ],
+        "coverage": 0.05714285746216774,
+        "known": 0.0,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:56:35",
+        "row": 56,
+        "col": 35,
+        "center": [
+          5.46875,
+          -38.28125
+        ],
+        "coverage": 0.954081654548645,
+        "known": 0.5280612111091614,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:56:36",
+        "row": 56,
+        "col": 36,
+        "center": [
+          7.03125,
+          -38.28125
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:56:37",
+        "row": 56,
+        "col": 37,
+        "center": [
+          8.59375,
+          -38.28125
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:56:38",
+        "row": 56,
+        "col": 38,
+        "center": [
+          10.15625,
+          -38.28125
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:56:39",
+        "row": 56,
+        "col": 39,
+        "center": [
+          11.71875,
+          -38.28125
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:56:40",
+        "row": 56,
+        "col": 40,
+        "center": [
+          13.28125,
+          -38.28125
+        ],
+        "coverage": 0.9948979616165161,
+        "known": 0.6313775777816772,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:56:41",
+        "row": 56,
+        "col": 41,
+        "center": [
+          14.84375,
+          -38.28125
+        ],
+        "coverage": 0.14795918762683868,
+        "known": 0.0,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:57:34",
+        "row": 57,
+        "col": 34,
+        "center": [
+          3.90625,
+          -39.84375
+        ],
+        "coverage": 0.4444444477558136,
+        "known": 0.12000000476837158,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:57:35",
+        "row": 57,
+        "col": 35,
+        "center": [
+          5.46875,
+          -39.84375
+        ],
+        "coverage": 1.0,
+        "known": 0.7464285492897034,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:57:36",
+        "row": 57,
+        "col": 36,
+        "center": [
+          7.03125,
+          -39.84375
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:57:37",
+        "row": 57,
+        "col": 37,
+        "center": [
+          8.59375,
+          -39.84375
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:57:38",
+        "row": 57,
+        "col": 38,
+        "center": [
+          10.15625,
+          -39.84375
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:57:39",
+        "row": 57,
+        "col": 39,
+        "center": [
+          11.71875,
+          -39.84375
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:57:40",
+        "row": 57,
+        "col": 40,
+        "center": [
+          13.28125,
+          -39.84375
+        ],
+        "coverage": 0.7285714149475098,
+        "known": 0.3214285671710968,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:58:33",
+        "row": 58,
+        "col": 33,
+        "center": [
+          2.34375,
+          -41.40625
+        ],
+        "coverage": 0.010204082354903221,
+        "known": 0.0,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:58:34",
+        "row": 58,
+        "col": 34,
+        "center": [
+          3.90625,
+          -41.40625
+        ],
+        "coverage": 0.8666666746139526,
+        "known": 0.4392857253551483,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:58:35",
+        "row": 58,
+        "col": 35,
+        "center": [
+          5.46875,
+          -41.40625
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:58:36",
+        "row": 58,
+        "col": 36,
+        "center": [
+          7.03125,
+          -41.40625
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:58:37",
+        "row": 58,
+        "col": 37,
+        "center": [
+          8.59375,
+          -41.40625
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:58:38",
+        "row": 58,
+        "col": 38,
+        "center": [
+          10.15625,
+          -41.40625
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:58:39",
+        "row": 58,
+        "col": 39,
+        "center": [
+          11.71875,
+          -41.40625
+        ],
+        "coverage": 1.0,
+        "known": 0.7155612111091614,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:58:40",
+        "row": 58,
+        "col": 40,
+        "center": [
+          13.28125,
+          -41.40625
+        ],
+        "coverage": 0.3163265287876129,
+        "known": 0.04209183529019356,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:59:33",
+        "row": 59,
+        "col": 33,
+        "center": [
+          2.34375,
+          -42.96875
+        ],
+        "coverage": 0.30612245202064514,
+        "known": 0.04209183529019356,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:59:34",
+        "row": 59,
+        "col": 34,
+        "center": [
+          3.90625,
+          -42.96875
+        ],
+        "coverage": 1.0,
+        "known": 0.7107142806053162,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:59:35",
+        "row": 59,
+        "col": 35,
+        "center": [
+          5.46875,
+          -42.96875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:59:36",
+        "row": 59,
+        "col": 36,
+        "center": [
+          7.03125,
+          -42.96875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:59:37",
+        "row": 59,
+        "col": 37,
+        "center": [
+          8.59375,
+          -42.96875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:59:38",
+        "row": 59,
+        "col": 38,
+        "center": [
+          10.15625,
+          -42.96875
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:59:39",
+        "row": 59,
+        "col": 39,
+        "center": [
+          11.71875,
+          -42.96875
+        ],
+        "coverage": 0.8877550959587097,
+        "known": 0.4515306055545807,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:59:40",
+        "row": 59,
+        "col": 40,
+        "center": [
+          13.28125,
+          -42.96875
+        ],
+        "coverage": 0.010204082354903221,
+        "known": 0.0,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:60:33",
+        "row": 60,
+        "col": 33,
+        "center": [
+          2.34375,
+          -44.53125
+        ],
+        "coverage": 0.7653061151504517,
+        "known": 0.33673468232154846,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:60:34",
+        "row": 60,
+        "col": 34,
+        "center": [
+          3.90625,
+          -44.53125
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:60:35",
+        "row": 60,
+        "col": 35,
+        "center": [
+          5.46875,
+          -44.53125
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:60:36",
+        "row": 60,
+        "col": 36,
+        "center": [
+          7.03125,
+          -44.53125
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:60:37",
+        "row": 60,
+        "col": 37,
+        "center": [
+          8.59375,
+          -44.53125
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:60:38",
+        "row": 60,
+        "col": 38,
+        "center": [
+          10.15625,
+          -44.53125
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:60:39",
+        "row": 60,
+        "col": 39,
+        "center": [
+          11.71875,
+          -44.53125
+        ],
+        "coverage": 0.5,
+        "known": 0.14923469722270966,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:61:32",
+        "row": 61,
+        "col": 32,
+        "center": [
+          0.78125,
+          -46.09375
+        ],
+        "coverage": 0.21904762089252472,
+        "known": 0.01785714365541935,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:61:33",
+        "row": 61,
+        "col": 33,
+        "center": [
+          2.34375,
+          -46.09375
+        ],
+        "coverage": 1.0,
+        "known": 0.6678571701049805,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:61:34",
+        "row": 61,
+        "col": 34,
+        "center": [
+          3.90625,
+          -46.09375
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:61:35",
+        "row": 61,
+        "col": 35,
+        "center": [
+          5.46875,
+          -46.09375
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:61:36",
+        "row": 61,
+        "col": 36,
+        "center": [
+          7.03125,
+          -46.09375
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:61:37",
+        "row": 61,
+        "col": 37,
+        "center": [
+          8.59375,
+          -46.09375
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:61:38",
+        "row": 61,
+        "col": 38,
+        "center": [
+          10.15625,
+          -46.09375
+        ],
+        "coverage": 0.9822221994400024,
+        "known": 0.6000000238418579,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:61:39",
+        "row": 61,
+        "col": 39,
+        "center": [
+          11.71875,
+          -46.09375
+        ],
+        "coverage": 0.10476190596818924,
+        "known": 0.0,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:62:32",
+        "row": 62,
+        "col": 32,
+        "center": [
+          0.78125,
+          -47.65625
+        ],
+        "coverage": 0.38265305757522583,
+        "known": 0.07653061300516129,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:62:33",
+        "row": 62,
+        "col": 33,
+        "center": [
+          2.34375,
+          -47.65625
+        ],
+        "coverage": 0.7857142686843872,
+        "known": 0.4017857015132904,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:62:34",
+        "row": 62,
+        "col": 34,
+        "center": [
+          3.90625,
+          -47.65625
+        ],
+        "coverage": 0.961904764175415,
+        "known": 0.5392857193946838,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:62:35",
+        "row": 62,
+        "col": 35,
+        "center": [
+          5.46875,
+          -47.65625
+        ],
+        "coverage": 1.0,
+        "known": 0.6772959232330322,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:62:36",
+        "row": 62,
+        "col": 36,
+        "center": [
+          7.03125,
+          -47.65625
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:62:37",
+        "row": 62,
+        "col": 37,
+        "center": [
+          8.59375,
+          -47.65625
+        ],
+        "coverage": 1.0,
+        "known": 0.75,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:62:38",
+        "row": 62,
+        "col": 38,
+        "center": [
+          10.15625,
+          -47.65625
+        ],
+        "coverage": 0.6952381134033203,
+        "known": 0.3107142746448517,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:63:34",
+        "row": 63,
+        "col": 34,
+        "center": [
+          3.90625,
+          -49.21875
+        ],
+        "coverage": 0.009523809887468815,
+        "known": 0.0,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:63:35",
+        "row": 63,
+        "col": 35,
+        "center": [
+          5.46875,
+          -49.21875
+        ],
+        "coverage": 0.15306122601032257,
+        "known": 0.0,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:63:36",
+        "row": 63,
+        "col": 36,
+        "center": [
+          7.03125,
+          -49.21875
+        ],
+        "coverage": 0.3316326439380646,
+        "known": 0.057397957891225815,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:63:37",
+        "row": 63,
+        "col": 37,
+        "center": [
+          8.59375,
+          -49.21875
+        ],
+        "coverage": 0.5051020383834839,
+        "known": 0.19132652878761292,
+        "chunk_id": "map10:2:0"
+      },
+      {
+        "id": "map10:road_cell:63:38",
+        "row": 63,
+        "col": 38,
+        "center": [
+          10.15625,
+          -49.21875
+        ],
+        "coverage": 0.24285714328289032,
+        "known": 0.04285714402794838,
+        "chunk_id": "map10:2:0"
+      }
+    ]
+  },
+  "spawn": {
+    "position": [
+      22.65625,
+      1.7000000000000002,
+      -11.71875
+    ],
+    "look_at": [
+      8.132224442478831,
+      1.7000000000000002,
+      9.24010512841966
+    ],
+    "chunk_id": "map10:2:1",
+    "road_cell_id": "map10:road_cell:39:46",
+    "selection": "Closest-to-map-center positive-known road cell inside a traced road polygon and outside every roof proxy",
+    "camera_height_semantics": "arbitrary display camera offset; not measured human height",
+    "navigability_verified": false
+  },
+  "chunking": {
+    "shape": [
+      4,
+      4
+    ],
+    "size": 25.0,
+    "id_format": "map10:{x_index}:{z_index}",
+    "coordinate_space": "global world xz; no per-chunk transform",
+    "membership": "Conservative polygon AABB overlap; chunk_id owns centroid, chunk_ids list all overlap chunks. Deduplicate geometry by persistent feature id.",
+    "point_membership": "Half-open cells, positive outer edge included in last chunk",
+    "extent": "Finite existing crop only; empty chunks remain unknown"
+  },
+  "chunks": [
+    {
+      "id": "map10:0:0",
+      "index": [
+        0,
+        0
+      ],
+      "bounds": {
+        "minX": -50.0,
+        "maxX": -25.0,
+        "minZ": -50.0,
+        "maxZ": -25.0
+      },
+      "building_ids": [
+        "roof_proxy_01"
+      ],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:1:0",
+      "index": [
+        1,
+        0
+      ],
+      "bounds": {
+        "minX": -25.0,
+        "maxX": 0.0,
+        "minZ": -50.0,
+        "maxZ": -25.0
+      },
+      "building_ids": [
+        "roof_proxy_01",
+        "roof_proxy_02"
+      ],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:2:0",
+      "index": [
+        2,
+        0
+      ],
+      "bounds": {
+        "minX": 0.0,
+        "maxX": 25.0,
+        "minZ": -50.0,
+        "maxZ": -25.0
+      },
+      "building_ids": [
+        "roof_proxy_02"
+      ],
+      "road_ids": [
+        "road_visible_01"
+      ],
+      "road_cell_ids": [
+        "map10:road_cell:52:36",
+        "map10:road_cell:52:37",
+        "map10:road_cell:52:38",
+        "map10:road_cell:53:36",
+        "map10:road_cell:53:37",
+        "map10:road_cell:53:38",
+        "map10:road_cell:53:39",
+        "map10:road_cell:53:40",
+        "map10:road_cell:53:41",
+        "map10:road_cell:54:35",
+        "map10:road_cell:54:36",
+        "map10:road_cell:54:37",
+        "map10:road_cell:54:38",
+        "map10:road_cell:54:39",
+        "map10:road_cell:54:40",
+        "map10:road_cell:54:41",
+        "map10:road_cell:55:35",
+        "map10:road_cell:55:36",
+        "map10:road_cell:55:37",
+        "map10:road_cell:55:38",
+        "map10:road_cell:55:39",
+        "map10:road_cell:55:40",
+        "map10:road_cell:55:41",
+        "map10:road_cell:56:34",
+        "map10:road_cell:56:35",
+        "map10:road_cell:56:36",
+        "map10:road_cell:56:37",
+        "map10:road_cell:56:38",
+        "map10:road_cell:56:39",
+        "map10:road_cell:56:40",
+        "map10:road_cell:56:41",
+        "map10:road_cell:57:34",
+        "map10:road_cell:57:35",
+        "map10:road_cell:57:36",
+        "map10:road_cell:57:37",
+        "map10:road_cell:57:38",
+        "map10:road_cell:57:39",
+        "map10:road_cell:57:40",
+        "map10:road_cell:58:33",
+        "map10:road_cell:58:34",
+        "map10:road_cell:58:35",
+        "map10:road_cell:58:36",
+        "map10:road_cell:58:37",
+        "map10:road_cell:58:38",
+        "map10:road_cell:58:39",
+        "map10:road_cell:58:40",
+        "map10:road_cell:59:33",
+        "map10:road_cell:59:34",
+        "map10:road_cell:59:35",
+        "map10:road_cell:59:36",
+        "map10:road_cell:59:37",
+        "map10:road_cell:59:38",
+        "map10:road_cell:59:39",
+        "map10:road_cell:59:40",
+        "map10:road_cell:60:33",
+        "map10:road_cell:60:34",
+        "map10:road_cell:60:35",
+        "map10:road_cell:60:36",
+        "map10:road_cell:60:37",
+        "map10:road_cell:60:38",
+        "map10:road_cell:60:39",
+        "map10:road_cell:61:32",
+        "map10:road_cell:61:33",
+        "map10:road_cell:61:34",
+        "map10:road_cell:61:35",
+        "map10:road_cell:61:36",
+        "map10:road_cell:61:37",
+        "map10:road_cell:61:38",
+        "map10:road_cell:61:39",
+        "map10:road_cell:62:32",
+        "map10:road_cell:62:33",
+        "map10:road_cell:62:34",
+        "map10:road_cell:62:35",
+        "map10:road_cell:62:36",
+        "map10:road_cell:62:37",
+        "map10:road_cell:62:38",
+        "map10:road_cell:63:34",
+        "map10:road_cell:63:35",
+        "map10:road_cell:63:36",
+        "map10:road_cell:63:37",
+        "map10:road_cell:63:38"
+      ]
+    },
+    {
+      "id": "map10:3:0",
+      "index": [
+        3,
+        0
+      ],
+      "bounds": {
+        "minX": 25.0,
+        "maxX": 50.0,
+        "minZ": -50.0,
+        "maxZ": -25.0
+      },
+      "building_ids": [],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:0:1",
+      "index": [
+        0,
+        1
+      ],
+      "bounds": {
+        "minX": -50.0,
+        "maxX": -25.0,
+        "minZ": -25.0,
+        "maxZ": 0.0
+      },
+      "building_ids": [],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:1:1",
+      "index": [
+        1,
+        1
+      ],
+      "bounds": {
+        "minX": -25.0,
+        "maxX": 0.0,
+        "minZ": -25.0,
+        "maxZ": 0.0
+      },
+      "building_ids": [
+        "roof_proxy_02",
+        "roof_proxy_04"
+      ],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:2:1",
+      "index": [
+        2,
+        1
+      ],
+      "bounds": {
+        "minX": 0.0,
+        "maxX": 25.0,
+        "minZ": -25.0,
+        "maxZ": 0.0
+      },
+      "building_ids": [
+        "roof_proxy_02",
+        "roof_proxy_04"
+      ],
+      "road_ids": [
+        "road_visible_02"
+      ],
+      "road_cell_ids": [
+        "map10:road_cell:37:46",
+        "map10:road_cell:37:47",
+        "map10:road_cell:38:46",
+        "map10:road_cell:38:47",
+        "map10:road_cell:39:45",
+        "map10:road_cell:39:46",
+        "map10:road_cell:39:47",
+        "map10:road_cell:40:45",
+        "map10:road_cell:40:46",
+        "map10:road_cell:40:47",
+        "map10:road_cell:41:45",
+        "map10:road_cell:41:46",
+        "map10:road_cell:41:47",
+        "map10:road_cell:42:46",
+        "map10:road_cell:42:47"
+      ]
+    },
+    {
+      "id": "map10:3:1",
+      "index": [
+        3,
+        1
+      ],
+      "bounds": {
+        "minX": 25.0,
+        "maxX": 50.0,
+        "minZ": -25.0,
+        "maxZ": 0.0
+      },
+      "building_ids": [],
+      "road_ids": [
+        "road_visible_02"
+      ],
+      "road_cell_ids": [
+        "map10:road_cell:37:48",
+        "map10:road_cell:37:49",
+        "map10:road_cell:38:48",
+        "map10:road_cell:38:49",
+        "map10:road_cell:38:50",
+        "map10:road_cell:39:48",
+        "map10:road_cell:39:49",
+        "map10:road_cell:39:50",
+        "map10:road_cell:40:48",
+        "map10:road_cell:40:49",
+        "map10:road_cell:41:48",
+        "map10:road_cell:42:48"
+      ]
+    },
+    {
+      "id": "map10:0:2",
+      "index": [
+        0,
+        2
+      ],
+      "bounds": {
+        "minX": -50.0,
+        "maxX": -25.0,
+        "minZ": 0.0,
+        "maxZ": 25.0
+      },
+      "building_ids": [],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:1:2",
+      "index": [
+        1,
+        2
+      ],
+      "bounds": {
+        "minX": -25.0,
+        "maxX": 0.0,
+        "minZ": 0.0,
+        "maxZ": 25.0
+      },
+      "building_ids": [
+        "roof_proxy_03",
+        "roof_proxy_04"
+      ],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:2:2",
+      "index": [
+        2,
+        2
+      ],
+      "bounds": {
+        "minX": 0.0,
+        "maxX": 25.0,
+        "minZ": 0.0,
+        "maxZ": 25.0
+      },
+      "building_ids": [
+        "roof_proxy_04"
+      ],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:3:2",
+      "index": [
+        3,
+        2
+      ],
+      "bounds": {
+        "minX": 25.0,
+        "maxX": 50.0,
+        "minZ": 0.0,
+        "maxZ": 25.0
+      },
+      "building_ids": [],
+      "road_ids": [
+        "road_visible_03"
+      ],
+      "road_cell_ids": [
+        "map10:road_cell:20:52",
+        "map10:road_cell:20:53",
+        "map10:road_cell:20:54",
+        "map10:road_cell:21:52",
+        "map10:road_cell:21:53",
+        "map10:road_cell:21:54",
+        "map10:road_cell:21:55",
+        "map10:road_cell:22:52",
+        "map10:road_cell:22:53",
+        "map10:road_cell:22:54",
+        "map10:road_cell:22:55",
+        "map10:road_cell:23:51",
+        "map10:road_cell:23:52",
+        "map10:road_cell:23:53",
+        "map10:road_cell:23:54",
+        "map10:road_cell:24:51",
+        "map10:road_cell:24:52",
+        "map10:road_cell:24:53",
+        "map10:road_cell:24:54",
+        "map10:road_cell:25:50",
+        "map10:road_cell:25:51",
+        "map10:road_cell:25:52",
+        "map10:road_cell:25:53",
+        "map10:road_cell:26:50",
+        "map10:road_cell:26:51",
+        "map10:road_cell:26:52",
+        "map10:road_cell:26:53",
+        "map10:road_cell:27:53"
+      ]
+    },
+    {
+      "id": "map10:0:3",
+      "index": [
+        0,
+        3
+      ],
+      "bounds": {
+        "minX": -50.0,
+        "maxX": -25.0,
+        "minZ": 25.0,
+        "maxZ": 50.0
+      },
+      "building_ids": [],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:1:3",
+      "index": [
+        1,
+        3
+      ],
+      "bounds": {
+        "minX": -25.0,
+        "maxX": 0.0,
+        "minZ": 25.0,
+        "maxZ": 50.0
+      },
+      "building_ids": [
+        "roof_proxy_03",
+        "roof_proxy_04"
+      ],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:2:3",
+      "index": [
+        2,
+        3
+      ],
+      "bounds": {
+        "minX": 0.0,
+        "maxX": 25.0,
+        "minZ": 25.0,
+        "maxZ": 50.0
+      },
+      "building_ids": [
+        "roof_proxy_04"
+      ],
+      "road_ids": [],
+      "road_cell_ids": []
+    },
+    {
+      "id": "map10:3:3",
+      "index": [
+        3,
+        3
+      ],
+      "bounds": {
+        "minX": 25.0,
+        "maxX": 50.0,
+        "minZ": 25.0,
+        "maxZ": 50.0
+      },
+      "building_ids": [],
+      "road_ids": [
+        "road_visible_04"
+      ],
+      "road_cell_ids": [
+        "map10:road_cell:9:58",
+        "map10:road_cell:9:59",
+        "map10:road_cell:9:60",
+        "map10:road_cell:10:58",
+        "map10:road_cell:10:59",
+        "map10:road_cell:10:60",
+        "map10:road_cell:11:57",
+        "map10:road_cell:11:58",
+        "map10:road_cell:11:59",
+        "map10:road_cell:11:60",
+        "map10:road_cell:12:57",
+        "map10:road_cell:12:58",
+        "map10:road_cell:12:59",
+        "map10:road_cell:13:56",
+        "map10:road_cell:13:57",
+        "map10:road_cell:13:58",
+        "map10:road_cell:13:59",
+        "map10:road_cell:14:56",
+        "map10:road_cell:14:57",
+        "map10:road_cell:14:58",
+        "map10:road_cell:14:59",
+        "map10:road_cell:15:56",
+        "map10:road_cell:15:57",
+        "map10:road_cell:15:58"
+      ]
+    }
+  ],
+  "source_hashes": {
+    "v11_metadata": {
+      "path": "map_object_world_v1/trellis2_map10_block_v11/inputs/MAP_INPUT.json",
+      "sha256": "5322ea8bed6c12bf549b7ba0e56f1c8ed7ad15dbaa037e360fbb3d4e135dcf68",
+      "expected_sha256": null,
+      "expected_hash_verified": false
+    },
+    "raster_metadata": {
+      "path": "map_object_world_v1/trellis2_map_learning_v1/trial_fix1/real_input/MAP_INPUT.json",
+      "sha256": "0a1342ff01c2cef96eec1599376e21405b8005c697a60345e47a4b84c48a1dea",
+      "expected_sha256": null,
+      "expected_hash_verified": false
+    },
+    "raster_archive": {
+      "path": "map_object_world_v1/trellis2_map_learning_v1/trial_fix1/real_input/map.npz",
+      "sha256": "6c9cc5fcf2c7f664c0e11adb6a432b086d4cf3876a7050399235d9dffa50c113",
+      "expected_sha256": "6c9cc5fcf2c7f664c0e11adb6a432b086d4cf3876a7050399235d9dffa50c113",
+      "expected_hash_verified": true
+    },
+    "source_image": {
+      "path": "map10_source.jpg",
+      "sha256": "066bb11bfc99ebccae10505f235167cb0f9c9dcca06d24343d1328a29842cc7b",
+      "expected_sha256": "066bb11bfc99ebccae10505f235167cb0f9c9dcca06d24343d1328a29842cc7b",
+      "expected_hash_verified": true
+    },
+    "annotation_compiler": {
+      "path": "trellis2_map_real_input_v1.py",
+      "sha256": "80a402716ccf57951d09e761ad695332f8f9a046e9810dd79947be7485922701",
+      "expected_sha256": "80a402716ccf57951d09e761ad695332f8f9a046e9810dd79947be7485922701",
+      "expected_hash_verified": true
+    },
+    "reference_crop": {
+      "path": "map_object_world_v1/trellis2_map10_block_v11/inputs/source_crop.png",
+      "sha256": "f253e2aed0d4f71971debab215d8d2bcf6aa0b2ed10d842540933eda49a5d030",
+      "expected_sha256": "f253e2aed0d4f71971debab215d8d2bcf6aa0b2ed10d842540933eda49a5d030",
+      "expected_hash_verified": true
+    },
+    "scaffold_exporter": {
+      "path": "v22_map_scaffold.py",
+      "sha256": "07688589094ee9f7ea805b2e9d1d11cec8a4bd5c5d2cbf8f3d8616927f504350",
+      "expected_sha256": null,
+      "expected_hash_verified": false
+    }
+  },
+  "source_verification": {
+    "semantic_metadata_equality": true,
+    "fixed_compiler_array_equality": {
+      "footprint_known": true,
+      "footprints": true,
+      "object_summary": true,
+      "object_valid": true,
+      "open_space": true,
+      "open_space_known": true,
+      "roads": true,
+      "roads_known": true
+    },
+    "v11_recorded_npz_sha256": "abe88b14efb2885dad9f1525be13af14ef5cf9f34b00c612a1fd8caf15fdffa0",
+    "local_npz_sha256": "6c9cc5fcf2c7f664c0e11adb6a432b086d4cf3876a7050399235d9dffa50c113",
+    "local_npz_matches_v11_recorded_hash": false,
+    "raster_selection": "Existing local archive verified against its own manifest and fixed compiler; v11 inputs/map.npz is not used."
+  },
+  "reference": {
+    "path": "map10_reference.png",
+    "sha256": "f253e2aed0d4f71971debab215d8d2bcf6aa0b2ed10d842540933eda49a5d030",
+    "meaning": "Byte-identical existing source_crop.png; no new interpretation"
+  },
+  "limitations": {
+    "surveyed_footprints": false,
+    "georeferenced": false,
+    "measured_footprint_accuracy_supported": false,
+    "geographic_accuracy_supported": false,
+    "heights_known": false,
+    "real_3d_ground_truth": false,
+    "metric_scale_or_ground_plane_inferred": false,
+    "building_property_identity_verified": false,
+    "statement": "Four existing visible roof proxies and four disconnected road patches only. Placeholder extrusions are map-derived visualization, not AI geometry or reconstructed buildings.",
+    "upstream_statement": "Visible roof/road proxies cannot substantiate measured-footprint or geographic accuracy. Perspective, roof overhangs, occlusions and partial context prevent those claims. No procedural 3D geometry is constructed.",
+    "unknown_context": "Only traced positive visible support can be known. Three source pixels of each boundary and explicit UI occlusions are unknown. All untraced context, negative/background absence, foliage, occluded pavement and open-space regions remain unknown; no all-known/empty artificial regions.",
+    "confidence_semantics": "Conservative manual visibility scores, not calibrated probabilities or geographic/footprint measurement confidence.",
+    "roads_complete": false,
+    "terrain_known": false,
+    "scaffold_native_alignment_known": false
+  }
+}

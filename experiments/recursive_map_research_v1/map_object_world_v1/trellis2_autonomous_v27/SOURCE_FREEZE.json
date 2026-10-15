@@ -1,0 +1,18 @@
+{
+  "v27_contract.py": "2a084dd128c10d5389d7bbf04c2a362cfe266c598bca59feba71b5c3de6f23e4",
+  "v27_verify.py": "f683ce8376c2593c073adc0c572f62999d446b5f627d6e88425034797eb644fd",
+  "v27_worker.py": "239280759bffc6b1f8111765ef2008bc61c7bd1466cfbc964d14bb278dc41c7e",
+  "v27_server.py": "27160cef73e1bd84ab5535fbdcfbf7d0ae2b096d7039b1b873b7b2fc2f7961f5",
+  "v24_boundary_sampler.py": "09c1cdcde02d749a13da02b5c46eb0fd681b3725f7d640fe22c8f88884e9014b",
+  "trellis2_native_street_v17.py": "c47e4f5e59e568c88a11eed5fcf8359e39afbdeb436cb68b914d9f3d2232cdb0",
+  "map_object_world_v1/trellis2_autonomous_v27/CONTRACT.json": "1cf2a5f432ac32259e7fe23430aa70199cb911278b130f5818835fe0e3309e43",
+  "map_object_world_v1/trellis2_autonomous_v27/EVALUATION_QUERIES.npz": "0a9dcbd68d440e233b47f7dbf02d2ad5bd83840201b0e611d31b44a1b406e4fc",
+  "map_object_world_v1/trellis2_autonomous_v27/map10_scaffold.json": "fd5dce3ba96ddff69831bcff6304a13aa41cb1e5c035c50612dbc45dc5d18025",
+  "map_object_world_v1/trellis2_autonomous_v27/BASELINE_CACHE.json": "3a784e170a00ed94b6e5d884f9f98c09c57fafea30c472feacec19af6be11e61",
+  "map_object_world_v1/trellis2_autonomous_v27/attempts/attempt-0/PLAN.json": "d5f50a3d78c82773b680bf0720d181e65104e0eb47c1f3b393fd97e05d99ea71",
+  "map_object_world_v1/trellis2_autonomous_v27/attempts/attempt-0/input.png": "737aeb8e25fc5d0c98846d912cc61ec6b0179d5e93495f3671f99505d22b6a28",
+  "map_object_world_v1/trellis2_autonomous_v27/attempts/attempt-0/ROAD_OBSERVATION.npz": "660bf1334bfb44ce7ef908281b4e5735d859996ea53a6c96a5377a796eb10933",
+  "map_object_world_v1/trellis2_autonomous_v27/attempts/attempt-1/PLAN.json": "efe2140de51536ad573f85fb1b7f11c71a0d212467ed8f19f7a1f3fbae7e8719",
+  "map_object_world_v1/trellis2_autonomous_v27/attempts/attempt-1/input.png": "737aeb8e25fc5d0c98846d912cc61ec6b0179d5e93495f3671f99505d22b6a28",
+  "map_object_world_v1/trellis2_autonomous_v27/attempts/attempt-1/ROAD_OBSERVATION.npz": "660bf1334bfb44ce7ef908281b4e5735d859996ea53a6c96a5377a796eb10933"
+}
