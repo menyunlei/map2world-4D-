@@ -1,0 +1,38 @@
+{
+  "verified_server_date": "2026-10-15",
+  "native_python": "3.10.22",
+  "torch": "2.6.0+cu124",
+  "torchvision": "0.21.0+cu124",
+  "cuda_toolkit": "12.4.99",
+  "flash_attention": "2.7.3",
+  "triton": "3.2.0",
+  "backbone": {
+    "url": "https://github.com/microsoft/TRELLIS.2.git",
+    "commit": "75fbf0183001ed9876c8dbb35de6b68552ee08bd",
+    "worktree_clean_when_verified": true
+  },
+  "native_dependencies": {
+    "utils3d": ["https://github.com/EasternJournalist/utils3d.git", "9a4eb15e4021b67b12c460c7057d642626897ec8"],
+    "nvdiffrast": ["https://github.com/NVlabs/nvdiffrast.git", "253ac4fcea7de5f396371124af597e6cc957bfae"],
+    "nvdiffrec_v3": ["https://github.com/JeffreyXiang/nvdiffrec.git", "b296927cc7fd01c2ac1087c8065c4d7248f72da4"],
+    "CuMesh": ["https://github.com/JeffreyXiang/CuMesh.git", "12289e1062f0603f2f0d0771b02e1395d247f26f"],
+    "FlexGEMM": ["https://github.com/JeffreyXiang/FlexGEMM.git", "6dd94a859c26ee8246888502eada3dd8ad85532e"]
+  },
+  "weight_repositories": {
+    "TRELLIS.2-4B": "microsoft/TRELLIS.2-4B",
+    "TRELLIS-image-large": "microsoft/TRELLIS-image-large",
+    "dinov3": "facebook/dinov3-vitl16-pretrain-lvd1689m"
+  },
+  "dinov3_model_sha256": "dcb2e45127cccbf1601e5f42fef165eea275c8e5213197e8dcf3f48822718179",
+  "samplers": {
+    "sparse_structure_sampler": {"name":"FlowEulerGuidanceIntervalSampler","args":{"sigma_min":0.00001},"params":{"steps":12,"guidance_strength":7.5,"guidance_rescale":0.7,"guidance_interval":[0.6,1.0],"rescale_t":5.0}},
+    "shape_slat_sampler": {"name":"FlowEulerGuidanceIntervalSampler","args":{"sigma_min":0.00001},"params":{"steps":12,"guidance_strength":7.5,"guidance_rescale":0.5,"guidance_interval":[0.6,1.0],"rescale_t":3.0}},
+    "tex_slat_sampler": {"name":"FlowEulerGuidanceIntervalSampler","args":{"sigma_min":0.00001},"params":{"steps":12,"guidance_strength":1.0,"guidance_rescale":0.0,"guidance_interval":[0.6,0.9],"rescale_t":3.0}}
+  },
+  "limitations": [
+    "Historical PLAN.json uses a malformed 41-character backbone commit; use this verified commit instead without rewriting historical evidence.",
+    "This is not a full binary/environment lock. Driver, compiler, JIT caches and CUDA extension builds can affect results.",
+    "Model download revisions were not frozen in the original setup; copy original weights and verify hashes for exact reproduction.",
+    "Clean-server installation and native inference have not been rerun as part of this documentation task."
+  ]
+}

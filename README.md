@@ -4,6 +4,11 @@ Experimental Map-to-3D research code built around TRELLIS.2, including learned
 map-conditioning experiments, native street generation, bounded asynchronous
 generation, mesh checks, and an interactive persistent-world viewer.
 
+**Reproduction:** [installation, exact dependency commits, weight paths and launch steps](docs/REPRODUCING.md).
+The verified environment lock is [here](docs/reproduction-lock.json).
+CPU checks: `python tools/reproduce.py audit` and
+`python -m unittest discover -s tools -p 'test_reproduce.py' -v`.
+
 ## Code map
 
 All project scripts live in `experiments/recursive_map_research_v1/`:
