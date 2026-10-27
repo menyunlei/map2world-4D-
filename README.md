@@ -9,6 +9,13 @@ The verified environment lock is [here](docs/reproduction-lock.json).
 CPU checks: `python tools/reproduce.py audit` and
 `python -m unittest discover -s tools -p 'test_reproduce.py' -v`.
 
+The current **CityTopia / CityDreamer4D Map10 player** uses WASD navigation and
+asynchronous native rendering on four A800 GPUs. See
+[launch steps, renderer entry point and measured limits](docs/CITYTOPIA_PLAY.md).
+The renderer reuses static map encodings, distributes the original padded tiles,
+and evaluates buildings only where their output is visible. Original model
+weights, density sampling and the 960×540 native image size are retained.
+
 ## Code map
 
 All project scripts live in `experiments/recursive_map_research_v1/`:
