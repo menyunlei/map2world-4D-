@@ -10,19 +10,19 @@ let statusTimer=null,statusBusy=false,submittedAt=0,displayedAt=0,nextNativeAt=0
 const keys=new Set(),cache=new Map(),loading=new Map(),loader=new T.TextureLoader();
 const image=new Image();image.id='native-image';image.hidden=true;viewport.insertBefore(image,$('labels'));
 $('crosshair').hidden=false;$('move-pad').hidden=false;
-$('labels').innerHTML='<span id="view-label">准备中</span>';
-$('map-source').textContent='CityDreamer4D · CityTopia 权重 · 现存 Map10 条件和固定建筑风格。街道缺陷原样保留；不是 Bistro，也不是 Sat3DGen。';
-$('case-note').textContent='快速导航 = 已保存原生 RGB + 粗深度的三维投影，可能有缺面、接缝；仅用于选机位。按 R = A800 原生神经渲染该机位（960×540，无锐化/SR）。导航预览不能用于判断最终生成质量。';
-$('camera-bar').innerHTML='<button id="walk" class="primary">▶ 行走 WASD</button><button id="fly">自由飞行 Q/E</button><button id="native" class="primary">R · 原生渲染当前机位</button><button id="preview">返回快速预览</button><button id="last-result" disabled>查看最新原生结果</button><select id="route-view" aria-label="固定原生机位"></select><button id="back">180° 回头</button><button id="save-view">保存机位 JSON</button><button id="shot">截图 PNG</button>';
-$('camera-bar').insertAdjacentHTML('beforeend','<label><input id="auto-native" type="checkbox" checked>移动联动四卡 · 最新机位优先</label>');
-$('hint').textContent='WASD 移动 · 按住鼠标拖动转向 · Shift 加速 · R 原生渲染 · Esc 停止';
+$('labels').innerHTML='<span id="view-label">Preparing</span>';
+$('map-source').textContent='CityDreamer4D · CityTopia weights · Existing Map10 conditions and fixed building styles. Street defects remain visible. This scene uses neither Bistro nor Sat3DGen.';
+$('case-note').textContent='Fast navigation projects saved native RGB with coarse depth into 3D; holes and seams may appear. Use it to choose a camera. Press R for A800 native neural rendering at that camera (960×540, no sharpening/SR). The navigation preview does not establish final generation quality.';
+$('camera-bar').innerHTML='<button id="walk" class="primary">▶ Walk WASD</button><button id="fly">Free flight Q/E</button><button id="native" class="primary">R · Render current native view</button><button id="preview">Return to fast preview</button><button id="last-result" disabled>Latest native result</button><select id="route-view" aria-label="Fixed native cameras"></select><button id="back">180° Turn around</button><button id="save-view">Save camera JSON</button><button id="shot">Screenshot PNG</button>';
+$('camera-bar').insertAdjacentHTML('beforeend','<label><input id="auto-native" type="checkbox" checked>Movement triggers four GPUs · Latest camera first</label>');
+$('hint').textContent='WASD to move · Drag to turn · Shift to accelerate · R for native render · Esc to stop';
 
 function toWorld(p){return new T.Vector3((p.y-1536)/4,(p.z-14)/4,-(p.x-1536)/4);}
 function toNative(v){return {x:1536-4*v.z,y:1536+4*v.x,z:14+4*v.y};}
 function pose(){return {cam_position:toNative(camera.position),cam_look_at:toNative(camera.position.clone().add(camera.getWorldDirection(new T.Vector3()).multiplyScalar(10)))};}
 function setPose(p){camera.position.copy(toWorld(p.cam_position));const d=toWorld(p.cam_look_at).sub(camera.position).normalize();yaw=Math.atan2(-d.x,-d.z);pitch=Math.asin(d.y);rotate();dirty=true;}
 function rotate(){camera.rotation.order='YXZ';camera.rotation.set(pitch,yaw,0);dirty=true;}
-function preview(){image.hidden=true;$('view-label').textContent=`快速 RGB-D 导航 · ${previewFPS} FPS · 非原生神经帧率`;dirty=true;}
+function preview(){image.hidden=true;$('view-label').textContent=`Fast RGB-D navigation · ${previewFPS} FPS · Not the native neural frame rate`;dirty=true;}
 function showNative(url,p,label){setPose(p);const expected=JSON.stringify(pose());image.onload=()=>{if(expected!==JSON.stringify(pose()))return;image.hidden=false;displayedAt=performance.now();$('view-label').textContent=label;canvas.dataset.nativeDisplayedAt=displayedAt;};image.src=url;}
 function changed(t){if(!autoDue)autoDue=t+120;sessionStorage.setItem('citytopia-live-pose',JSON.stringify(pose()));}
 function fail(e){$('error').hidden=false;$('error').textContent=String(e);}
@@ -47,28 +47,28 @@ function selectPreview(){
  if(cache.size>12){for(const [id,m] of cache)if(!ranked.slice(0,8).some(v=>v.c.index===id)){scene.remove(m);m.geometry.dispose();m.material.map.dispose();m.material.dispose();cache.delete(id);}}
 }
 async function requestNative(){
- try{if(currentJob||performance.now()<nextNativeAt)return;autoDue=0;currentJob='sending';submittedAt=performance.now();const p=pose(),job=await fetchJSON('/api/render',{pose:p});currentJob=job.id;$('native').disabled=true;$('error').hidden=true;$('health').textContent='A800 GPU0–3 动态分块 / 原生渲染中，可继续移动';clearTimeout(statusTimer);status();}
+ try{if(currentJob||performance.now()<nextNativeAt)return;autoDue=0;currentJob='sending';submittedAt=performance.now();const p=pose(),job=await fetchJSON('/api/render',{pose:p});currentJob=job.id;$('native').disabled=true;$('error').hidden=true;$('health').textContent='A800 GPU0–3 dynamic tiles / Native rendering; navigation remains available';clearTimeout(statusTimer);status();}
  catch(e){currentJob=null;$('native').disabled=false;autoDue=0;nextNativeAt=performance.now()+3000;fail(e);}
 }
 async function status(){
  if(statusBusy)return;statusBusy=true;clearTimeout(statusTimer);
  try{const s=await fetchJSON('/api/status');const j=currentJob&&s.jobs[currentJob];
   const gpu=s.state.gpus?.join('/')??s.state.gpu??'?';
-  $('health').textContent=j?`GPU ${gpu} · ${j.status} · ${j.tiles_done?.length??0}/${j.tiles_total??4} 动态分块 · 可继续移动`:`GPU ${gpu} · ${s.state.phase}`;
-  if(j?.status==='done'){currentJob=null;$('native').disabled=false;lastResult=j;$('last-result').disabled=false;$('last-result').textContent=`查看原生结果（${j.seconds.toFixed(1)}s）`;
+  $('health').textContent=j?`GPU ${gpu} · ${j.status} · ${j.tiles_done?.length??0}/${j.tiles_total??4} dynamic tiles · Navigation remains available`:`GPU ${gpu} · ${s.state.phase}`;
+  if(j?.status==='done'){currentJob=null;$('native').disabled=false;lastResult=j;$('last-result').disabled=false;$('last-result').textContent=`View native result (${j.seconds.toFixed(1)}s)`;
    const now=pose(),same=['cam_position','cam_look_at'].every(k=>['x','y','z'].every(a=>Math.abs(now[k][a]-j.pose[k][a])<.02));
    canvas.dataset.nativeSeconds=j.seconds;canvas.dataset.nativeJob=j.id;
-   if(same){autoDue=0;showNative(j.url,j.pose,`四卡原生 960×540 · ${(j.render_seconds??j.seconds).toFixed(2)}s 计算 · 无画面增强`);}
+   if(same){autoDue=0;showNative(j.url,j.pose,`Four-GPU native 960×540 · ${(j.render_seconds??j.seconds).toFixed(2)}s compute · No image enhancement`);}
   }else if(j?.status==='error'){currentJob=null;$('native').disabled=false;nextNativeAt=performance.now()+3000;fail(j.error);}
   else if(currentJob&&currentJob!=='sending'&&!j){currentJob=null;$('native').disabled=false;autoDue=performance.now()+500;}
- }catch(e){$('health').textContent='原生服务连接失败；已加载预览仍可移动';}
+ }catch(e){$('health').textContent='Native service unavailable; loaded previews remain navigable';}
  finally{statusBusy=false;statusTimer=setTimeout(status,currentJob?150:3000);}
 }
 $('walk').onclick=()=>{mode='walk';canvas.focus();};$('fly').onclick=()=>{mode='fly';canvas.focus();};
 $('native').onclick=requestNative;$('preview').onclick=preview;$('save-view').onclick=savePose;$('shot').onclick=screenshot;
-$('last-result').onclick=()=>{if(lastResult)showNative(lastResult.url,lastResult.pose,`A800 原生结果 · ${lastResult.seconds.toFixed(1)}s`);};
+$('last-result').onclick=()=>{if(lastResult)showNative(lastResult.url,lastResult.pose,`A800 native result · ${lastResult.seconds.toFixed(1)}s`);};
 $('back').onclick=()=>{preview();yaw+=Math.PI;rotate();selectPreview();changed(performance.now());};
-$('route-view').onchange=()=>{const c=manifest.cameras.find(c=>c.index===+$('route-view').value);if(c)showNative(c.rgb,c.pose,'已保存 CityTopia 原生渲染 · 无新推理');};
+$('route-view').onchange=()=>{const c=manifest.cameras.find(c=>c.index===+$('route-view').value);if(c)showNative(c.rgb,c.pose,'Saved CityTopia native render · No new inference');};
 canvas.onpointerdown=e=>{canvas.focus();drag={x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);};
 canvas.onpointermove=e=>{if(!drag)return;preview();yaw-=(e.clientX-drag.x)*.003;pitch=T.MathUtils.clamp(pitch-(e.clientY-drag.y)*.003,-1.3,1.3);drag={x:e.clientX,y:e.clientY};rotate();changed(performance.now());};
 canvas.onpointerup=()=>drag=null;canvas.onpointercancel=()=>drag=null;
@@ -86,5 +86,5 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  if(t-fpsSince>1000){previewFPS=Math.round(moveFrames*1000/(t-fpsSince));canvas.dataset.previewFps=previewFPS;moveFrames=0;fpsSince=t;}
 }
 new ResizeObserver(()=>{const w=viewport.clientWidth,h=viewport.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();dirty=true;}).observe(viewport);
-async function boot(){manifest=await fetchJSON('/preview/manifest.json');for(const c of manifest.cameras){const o=document.createElement('option');o.value=c.index;o.textContent=`${c.index} · ${c.tag}`;$('route-view').append(o);}const c=manifest.cameras.find(c=>c.index===manifest.default);$('route-view').value=c.index;setPose(c.pose);await mesh(c);selectPreview();$('loading').hidden=true;const saved=sessionStorage.getItem('citytopia-live-pose');if(saved){try{setPose(JSON.parse(saved));preview();selectPreview();}catch{showNative(c.rgb,c.pose,'已保存 CityTopia 原生渲染');}}else showNative(c.rgb,c.pose,'已保存 CityTopia 原生渲染 · 移动联动四卡');canvas.focus();status();}
+async function boot(){manifest=await fetchJSON('/preview/manifest.json');for(const c of manifest.cameras){const o=document.createElement('option');o.value=c.index;o.textContent=`${c.index} · ${c.tag}`;$('route-view').append(o);}const c=manifest.cameras.find(c=>c.index===manifest.default);$('route-view').value=c.index;setPose(c.pose);await mesh(c);selectPreview();$('loading').hidden=true;const saved=sessionStorage.getItem('citytopia-live-pose');if(saved){try{setPose(JSON.parse(saved));preview();selectPreview();}catch{showNative(c.rgb,c.pose,'Saved CityTopia native render');}}else showNative(c.rgb,c.pose,'Saved CityTopia native render · Movement triggers four GPUs');canvas.focus();status();}
 boot().catch(fail);requestAnimationFrame(frame);

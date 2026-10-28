@@ -72,7 +72,7 @@ def prepare():
       'selected_records':selected,'six_records':selected[:6],'heldout_records':validation,'evaluation_records':records,'edit_records':edits,
       'small':{'updates':1000,'checkpoints':[100,300,1000],'effective_batch':2,'primary_checkpoint':1000},
       'starting_updates':1000,'optimizer_reset':'fresh identical state across paired arms, not a resumed optimizer',
-      'proposal':str(proposal),'proposal_sha256':sha(proposal),'authorization':'user: 启动！',
+      'proposal':str(proposal),'proposal_sha256':sha(proposal),'authorization':'user: Start!',
       'only_variable':'six vs24 existing TRAIN object exposure; same adapter+LoRA and native flow objective',
       'selection_algorithm':'minimum selected family count, then asset count, then maximum minimum footprint-XOR/union distance, then scene/object lexicographic',
       'selection_limits':'24 distinct native geometry keys; repeated authored assets/rotations not independent families',

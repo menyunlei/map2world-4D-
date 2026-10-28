@@ -10,7 +10,7 @@ REMOTE='/hpc2hdd/home/xhe989/Documents/2541/project2/DreamX-World-master/experim
 R=REMOTE+'/map_object_world_v1/trellis2_autonomous_v27'
 lock=threading.RLock();ssh=None
 state=dict(status='waiting_camera',worker={},budget={'max_generations':2,'used':0,'max_retries':1},
-    message='Map10 骨架可移动。朝未知区域行走后才请求一次生成；未验收资产不会安装。',
+    message='The Map10 scaffold is navigable. One generation is requested only after walking toward an unknown region; unaccepted assets are not installed.',
     cycle=dict(id='map10-0',status='waiting_camera',attempts=[],accepted=None,feedback=None),
     weight_training=False,map10_semantics='oblique roof/road proxies, not surveyed footprints')
 def read(p):return json.loads(Path(p).read_text(encoding='utf8'))
@@ -63,7 +63,7 @@ def monitor():
                     except FileNotFoundError:continue
                     if i not in seen:
                         with lock:
-                            state['cycle']['status']='checking';state['message']='候选生成完成；独立验证中，不替换世界。';persist()
+                            state['cycle']['status']='checking';state['message']='Candidate generation complete; independent validation is in progress, without replacing the world.';persist()
                         pull(s,rd+'/world.glb',d/'world.glb',complete['sha256'])
                         for name in ['COMPLETE.json','ASSET.json','LOAD.json','ONE_ATTEMPT.json','STAGES.jsonl','GENERATED_STRUCTURE.npz']:
                             pull(s,rd+'/'+name,d/name)
@@ -95,7 +95,7 @@ def monitor():
                     state['worker']=worker
                     if worker['stage']=='stopped':
                         state['status']='stopped';state['cycle']['status']='accepted' if state['cycle']['accepted'] else 'stopped_keep_scaffold'
-                        state['message']='有界循环结束：未通过的候选保留隔离，原世界未修改。' if not state['cycle']['accepted'] else '候选通过，已永久缓存。'
+                        state['message']='Bounded cycle ended: failed candidates remain quarantined; the original world is unchanged.' if not state['cycle']['accepted'] else 'Candidate accepted and permanently cached.'
                     elif worker['stage']=='failed':state['status']='failed';state['cycle']['status']='failed_keep_scaffold'
                     elif state['cycle']['status']!='waiting_camera':state['cycle']['status']=worker['stage']
                     persist()

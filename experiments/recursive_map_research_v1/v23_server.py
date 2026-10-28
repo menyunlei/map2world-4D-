@@ -12,7 +12,7 @@ PYTHON=REMOTE+'/trellis2_native_quality_v1/environment/bin/python'
 V21=JOB/'map_object_world_v1/trellis2_long_street_v21'
 VENDOR=JOB/'matched_backbone_adaptation_v1/asset_delivery_v3/interactive/dist/vendor'
 lock=threading.RLock();ssh=None
-state={'status':'waiting_camera','message':'前进至 Z≤5 且朝向前方后，启动唯一一次真实推理。','budget':{'max_generations':1,'used':0,'max_gpu_seconds':600},
+state={'status':'waiting_camera','message':'Move forward to Z≤5 while facing forward to start the only actual inference run.','budget':{'max_generations':1,'used':0,'max_gpu_seconds':600},
  'v21':{'asset_url':'/assets/v21.glb','sha256':'b372c05fbdd2eba6b5978b15cf7a25fcb1e238aea47a9d93ca6fbe3e40f016fe'},
  'trigger':{'z_lte':5,'x_abs_lte':25,'forward_z_lte':-.25},
  'chunk':{'id':'online-0--1','status':'waiting_camera','asset_url':'/assets/online.glb','sha256':None,'position':[0,0,-100],'model_generation_seconds':None}}
@@ -50,7 +50,7 @@ def generate(request):
             with s.open(RCHUNK+'/REQUEST.json','wx') as f:f.write(json.dumps(request))
         command=f'cd {shlex.quote(REMOTE)} && {shlex.quote(PYTHON)} -B -u v23_native_job.py --detach'
         launched=json.loads(execute(command));log('remote_dispatch',command=command,owner=launched)
-        start=time.time();update('queued','已提交 A800，正在加载 TRELLIS.2。',generation_started_epoch=start)
+        start=time.time();update('queued','Submitted to A800; loading TRELLIS.2.',generation_started_epoch=start)
         while time.time()-start<840:
             with ssh.open_sftp() as s:remote=rjson(s,'STATUS.json')
             stage=remote['status']
@@ -58,12 +58,12 @@ def generate(request):
             if stage=='ready':break
             with lock:
                 state['generation_elapsed_seconds']=time.time()-start
-                if state['status']!=stage:update(stage,'TRELLIS.2 正在生成新三维街区，仍可移动。' if stage=='generating' else '生成完成，正在导出原生几何。')
+                if state['status']!=stage:update(stage,'TRELLIS.2 is generating a new 3D block; movement remains available.' if stage=='generating' else 'Generation complete; exporting native geometry.')
                 state['remote_gpu']=remote.get('gpu',state.get('remote_gpu'));persist()
             time.sleep(1)
         else:raise RuntimeError('Bounded wall-clock deadline reached; remote generation has its own 600s hard limit')
         with ssh.open_sftp() as s:
-            complete=rjson(s,'COMPLETE.json');update('transferring','真实推理已完成，正在自动下载和校验新资产。')
+            complete=rjson(s,'COMPLETE.json');update('transferring','Actual inference is complete; automatically downloading and verifying the new asset.')
             pull(s,'chunk_100m.glb',complete['sha256'])
             for name in ['COMPLETE.json','GPU_COST.json','PLAN.json','REQUEST.json','LAUNCH.json','RELOAD.json','ASSET.json','LOAD.json','SOURCE_FREEZE.json','ONE_ATTEMPT.json','logs/generation.log']:
                 pull(s,name)
@@ -75,9 +75,9 @@ def generate(request):
         with lock:
             state['chunk'].update(sha256=complete['sha256'],model_generation_seconds=complete['native_generation_seconds'],gpu_seconds=complete['gpu_seconds'],vertices=complete['vertices'],faces=complete['faces'])
             state['generation_elapsed_seconds']=time.time()-start
-        update('ready','新街区已生成、下载并独立加载。返回将复用此缓存；本次预算已用完。',ready_epoch=time.time())
+        update('ready','The new block has been generated, downloaded and independently loaded. Revisits reuse this cache; the budget for this run is exhausted.',ready_epoch=time.time())
         log('asset_published',sha256=complete['sha256'],camera_request=request,total_seconds=time.time()-start)
-    except Exception as e:update('failed','本次在线推理失败，保存日志，不自动重试。',error=str(e));log('failed',error=str(e))
+    except Exception as e:update('failed','This online inference attempt failed; logs are preserved, with no automatic retry.',error=str(e));log('failed',error=str(e))
 def camera(data):
     p=data.get('position');d=data.get('forward')
     if not all(isinstance(a,list) and len(a)==3 and all(isinstance(x,(int,float)) and math.isfinite(x) and abs(x)<1e6 for x in a) for a in [p,d]):raise ValueError('Invalid camera')
@@ -88,7 +88,7 @@ def camera(data):
         request={**state['camera'],'trigger':state['trigger'],'seed':942219,'chunk_id':'online-0--1','fps':data.get('fps'),'event':data.get('event')}
         # Exclusive durable claim prevents duplicates on repeated frames/revisits/restarts.
         with (OUT/'ATTEMPT.json').open('x',encoding='utf8') as f:json.dump(request,f)
-        state['budget']['used']=1;update('queued','相机进入触发区，已登记一次真实生成请求。')
+        state['budget']['used']=1;update('queued','The camera entered the trigger region; one actual generation request has been registered.')
         log('camera_trigger',request=request);threading.Thread(target=generate,args=(request,),daemon=True).start()
         return {'accepted':True,'status':'queued','chunk_id':'online-0--1'}
 class Handler(SimpleHTTPRequestHandler):
@@ -148,7 +148,7 @@ if __name__=='__main__':
         persist()
     elif (OUT/'ATTEMPT.json').exists():
         state=json.loads((OUT/'STATE.json').read_text(encoding='utf8'))
-        if state['status'] not in ['ready','failed']:update('failed','已有尝试未完成；保留状态，禁止重复启动。')
+        if state['status'] not in ['ready','failed']:update('failed','An existing attempt is incomplete; preserving state and preventing a duplicate launch.')
     else:persist()
     print(f'V23_READY http://127.0.0.1:{args.port}/ CAMERA_TRIGGER_ONLY max_generations=1',flush=True)
     ThreadingHTTPServer(('127.0.0.1',args.port),Handler).serve_forever()

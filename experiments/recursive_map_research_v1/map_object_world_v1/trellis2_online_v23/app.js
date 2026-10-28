@@ -4,7 +4,7 @@ const API_ORIGIN='http://127.0.0.1:8768';
 const assetURL=url=>new URL(url,API_ORIGIN).href;
 const $=id=>document.getElementById(id),vp=$('viewport'),boot=performance.now(),session=crypto.randomUUID();
 const renderer=new THREE.WebGLRenderer({antialias:false,powerPreference:'high-performance'});renderer.setPixelRatio(1);renderer.setClearColor('#26313b');renderer.outputColorSpace=THREE.SRGBColorSpace;
-vp.appendChild(renderer.domElement);renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','三维交互视口');
+vp.appendChild(renderer.domElement);renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','Interactive 3D viewport');
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(65,1,.03,80),controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=false;
 const groups={native:new THREE.Group(),online:new THREE.Group()};Object.values(groups).forEach(g=>scene.add(g));
 const worker=new Worker('./mesh_worker.js?v=23'),pending=new Map(),cache=new Map(),keys=new Set(),events=[],samples=[],dir=new THREE.Vector3();
@@ -34,7 +34,7 @@ function load(id,url,sha){
  const key=id+':'+sha;
  if(cache.has(key)){event('cache_hit',{id,sha256:sha});return Promise.resolve(cache.get(key));}
  if(pending.has(key))return pending.get(key).promise;
- const start=performance.now();event('load_start',{id,sha256:sha});$('loading').textContent=`后台读取 ${id}，移动无需等待…`;
+ const start=performance.now();event('load_start',{id,sha256:sha});$('loading').textContent=`Loading in background: ${id}; no need to wait before moving…`;
  let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});
  pending.set(key,{id,promise,resolve,reject,start});worker.postMessage({id:key,url:assetURL(url),sha256:sha});return promise;
 }
@@ -42,7 +42,7 @@ worker.onmessage=({data:d})=>{const job=pending.get(d.id);if(!job)return;if(!d.o
  const root=new THREE.Group();let triangles=0,vertices=0;const geometries=d.meshes.map(prims=>prims.flatMap(p=>{const attrs={};for(const [name,a] of [['position',p.position],['color',p.color],['normal',p.normal]])if(a)attrs[name]=new THREE.BufferAttribute(a.array,a.itemSize,a.normalized);const index=new THREE.BufferAttribute(p.index.array,1);vertices+=p.position.array.length/3;triangles+=p.index.array.length/3;return p.batches.map(b=>{const g=new THREE.BufferGeometry();for(const [name,a] of Object.entries(attrs))g.setAttribute(name,a);g.setIndex(index);g.setDrawRange(b.start,b.count);g.boundingBox=new THREE.Box3(new THREE.Vector3(...b.min),new THREE.Vector3(...b.max));g.boundingSphere=g.boundingBox.getBoundingSphere(new THREE.Sphere());return g;});}));
  function node(i){const n=d.nodes[i],o=new THREE.Group();if(n.matrix){o.matrix.fromArray(n.matrix);o.matrixAutoUpdate=false;}else{if(n.translation)o.position.fromArray(n.translation);if(n.rotation)o.quaternion.fromArray(n.rotation);if(n.scale)o.scale.fromArray(n.scale);}
  if(n.mesh!==undefined)for(const g of geometries[n.mesh])o.add(new THREE.Mesh(g,new THREE.MeshBasicMaterial({vertexColors:!!g.attributes.color,side:THREE.DoubleSide,color:0xffffff})));for(const child of n.children||[])o.add(node(child));return o;}
- d.roots.forEach(i=>root.add(node(i)));const record={id:job.id,root,sha256:d.sha256,triangles,vertices,bytes:d.bytes,loadMs:performance.now()-job.start,workerMs:d.workerMs,loadStart:job.start};cache.set(d.id,record);pending.delete(d.id);metrics.loads[job.id]={...record,root:undefined};event('load_complete',{id:job.id,sha256:d.sha256,ms:record.loadMs,triangles});$('loading').textContent=`${job.id}：${(record.loadMs/1000).toFixed(2)}s 读取解析 / ${(d.bytes/1e6).toFixed(1)}MB / ${(triangles/1e6).toFixed(2)}M 三角形`;
+ d.roots.forEach(i=>root.add(node(i)));const record={id:job.id,root,sha256:d.sha256,triangles,vertices,bytes:d.bytes,loadMs:performance.now()-job.start,workerMs:d.workerMs,loadStart:job.start};cache.set(d.id,record);pending.delete(d.id);metrics.loads[job.id]={...record,root:undefined};event('load_complete',{id:job.id,sha256:d.sha256,ms:record.loadMs,triangles});$('loading').textContent=`${job.id}: ${(record.loadMs/1000).toFixed(2)}s loading/parsing / ${(d.bytes/1e6).toFixed(1)}MB / ${(triangles/1e6).toFixed(2)}M triangles`;
  $('cache').textContent=[...cache.values()].map(v=>`${v.id}: ${v.sha256.slice(0,10)}`).join(' | ');job.resolve(record);
  }catch(e){pending.delete(d.id);job.reject(e);}};
 worker.onerror=e=>{for(const job of pending.values())job.reject(Error(e.message||'Mesh worker failed'));pending.clear();error(e.message||'Mesh worker failed');};
@@ -51,7 +51,7 @@ async function ensureNative(){
  try{
   const rec=await load('native-v21-000',api?.v21?.asset_url||'/assets/v21.glb',api?.v21?.sha256||'b372c05fbdd2eba6b5978b15cf7a25fcb1e238aea47a9d93ca6fbe3e40f016fe');
   if(!rec.root.parent)groups.native.add(rec.root);vis();
-  $('init').textContent='原始 v21 已载入';event('native_ready',{sha256:rec.sha256});
+  $('init').textContent='Original v21 loaded';event('native_ready',{sha256:rec.sha256});
  }catch(e){error(e);}finally{nativeLoading=false;}
 }
 async function ensureOnline(){
@@ -63,25 +63,25 @@ async function ensureOnline(){
   if(!rec.root.parent){rec.root.position.fromArray(c.position);groups.online.add(rec.root);event('chunk_arrival',{id:c.id,sha256:c.sha256,camera:camera.position.toArray(),pose_unchanged:true});}vis();
  }catch(e){error(e);}finally{onlineLoading=false;}
 }
-const statusLabels={waiting_camera:'等待相机进入触发区域',queued:'已排队',generating:'GPU 生成中',exporting:'导出原始 GLB',transferring:'传输资产',ready:'资产就绪',failed:'本次尝试失败'};
+const statusLabels={waiting_camera:'Waiting for the camera to enter the trigger region',queued:'Queued',generating:'GPU generation in progress',exporting:'Exporting original GLB',transferring:'Transferring asset',ready:'Asset ready',failed:'This attempt failed'};
 function showState(){
  const c=api.chunk,status=c?.status||api.status||'unknown',trigger=api.trigger||{z_lte:5,x_abs_lte:25,forward_z_lte:-.25};
  $('job').dataset.status=status;$('job').textContent=`${c?.id||'online-0--1'} · ${statusLabels[status]||status}`;
- $('budget').textContent=`预算 ${api.budget?.used??'—'} / ${api.budget?.max_generations??1}`;
- $('stage').textContent=`后端 / GPU 阶段：${status}${api.status&&api.status!==status?' · '+api.status:''}`;
+ $('budget').textContent=`Budget ${api.budget?.used??'—'} / ${api.budget?.max_generations??1}`;
+ $('stage').textContent=`Backend / GPU stage: ${status}${api.status&&api.status!==status?' · '+api.status:''}`;
  const elapsed=api.generation_elapsed_seconds,model=c?.model_generation_seconds;
- $('elapsed').textContent=Number.isFinite(elapsed)?`后端实测耗时：${elapsed.toFixed(1)} s`:'生成耗时：等待后端实测';
- if(Number.isFinite(model))$('elapsed').textContent+=` · 模型 ${model.toFixed(1)} s`;
- $('message').textContent=api.message||'状态由服务器提供；相机保持自由。';
- $('trigger').textContent=`相机触发：Z ≤ ${trigger.z_lte}，|X| ≤ ${trigger.x_abs_lte}，forward.z ≤ ${trigger.forward_z_lte}。实际导航后上报，预算仅 1 次。`;
+ $('elapsed').textContent=Number.isFinite(elapsed)?`Measured backend time: ${elapsed.toFixed(1)} s`:'Generation time: Waiting for backend measurements';
+ if(Number.isFinite(model))$('elapsed').textContent+=` · Model ${model.toFixed(1)} s`;
+ $('message').textContent=api.message||'State is provided by the server; the camera remains free.';
+ $('trigger').textContent=`Camera trigger: Z ≤ ${trigger.z_lte}, |X| ≤ ${trigger.x_abs_lte}, forward.z ≤ ${trigger.forward_z_lte}. Reported after actual navigation; budget limited to 1 generation.`;
  $('online-download').hidden=status!=='ready'||!c?.sha256;if(c?.asset_url)$('online-download').href=assetURL(c.asset_url);
 }
 async function poll(){
  try{
   const r=await fetch(API_ORIGIN+'/api/state',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);api=await r.json();showState();
-  $('connection').textContent='API 已连接 · 状态每秒刷新';
+  $('connection').textContent='API connected · State refreshes every second';
   if(![...cache.values()].some(r=>r.id==='native-v21-000'))void ensureNative();void ensureOnline();
- }catch(e){$('connection').textContent='状态连接中断 · '+e.message+' · 已载入场景可继续浏览';}
+ }catch(e){$('connection').textContent='State connection lost · '+e.message+' · Loaded scenes remain explorable';}
  setTimeout(poll,1000);
 }
 async function reportCamera(){
@@ -104,14 +104,14 @@ function mini(){
   c.fillStyle=pendingBlock?'#edc48a':'#a5d8cb';c.font='11px system-ui';c.fillText(label,a[0]+5,a[1]+15);
  };
  const chunk=api?.chunk,position=chunk?.position||[0,0,-100],key=chunk?.id+':'+chunk?.sha256,onlinePresent=cache.has(key)&&!!cache.get(key).root.parent;
- block(0,0,![...cache.values()].some(r=>r.id==='native-v21-000'),'v21 原始街道');
- block(position[0],position[2],!onlinePresent,onlinePresent?'在线块 · 已追加':'在线块 · '+(statusLabels[chunk?.status]||'等待相机'));
+ block(0,0,![...cache.values()].some(r=>r.id==='native-v21-000'),'Original v21 street');
+ block(position[0],position[2],!onlinePresent,onlinePresent?'Online chunk · Appended':'Online chunk · '+(statusLabels[chunk?.status]||'Waiting for camera'));
  const t=api?.trigger||{z_lte:5,x_abs_lte:25},a=xy(-t.x_abs_lte,t.z_lte),b=xy(t.x_abs_lte,t.z_lte);
  c.strokeStyle='#95ef9e';c.lineWidth=2;c.setLineDash([4,3]);c.beginPath();c.moveTo(...a);c.lineTo(...b);c.stroke();c.setLineDash([]);
- c.fillStyle='#b8edb6';c.font='10px system-ui';c.fillText('触发 Z ≤ '+t.z_lte,a[0],a[1]-5);
+ c.fillStyle='#b8edb6';c.font='10px system-ui';c.fillText('Trigger Z ≤ '+t.z_lte,a[0],a[1]-5);
  camera.getWorldDirection(dir);const p=xy(camera.position.x,camera.position.z),q=xy(camera.position.x+dir.x*8,camera.position.z+dir.z*8);
  c.fillStyle='#ff7649';c.beginPath();c.arc(...p,4,0,7);c.fill();c.strokeStyle='#ff7649';c.lineWidth=2;c.beginPath();c.moveTo(...p);c.lineTo(...q);c.stroke();
- c.font='11px system-ui';c.fillStyle='#e4edf3';c.fillText('位置示意 · 虚线为待载入块',12,17);c.fillText('橙色：真实相机 / 绿色：触发线',12,286);
+ c.font='11px system-ui';c.fillStyle='#e4edf3';c.fillText('Position diagram · Dashed lines show pending chunks',12,17);c.fillText('Orange: actual camera / Green: trigger line',12,286);
 }
 function snapshot(){camera.getWorldDirection(dir);return {session,epoch:Date.now(),world,mode,position:camera.position.toArray(),forward:dir.toArray(),quaternion:camera.quaternion.toArray(),fps,maxFrameMs,visible:!document.hidden,loaded:[...cache.values()].map(r=>({id:r.id,sha256:r.sha256,triangles:r.triangles})),pending:[...pending.values()].map(r=>r.id),renderSize:[renderer.domElement.width,renderer.domElement.height],chunkStatus:api?.chunk?.status,budget:api?.budget,generation_started_epoch:api?.generation_started_epoch,generation_elapsed_seconds:api?.generation_elapsed_seconds};}
 function telemetry(){const s=snapshot();samples.push(s);if(samples.length>600)samples.shift();fetch(API_ORIGIN+'/api/telemetry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({snapshot:s,renderer:metrics.renderer,loads:metrics.loads,events:events.slice(-40)}),keepalive:true}).catch(()=>{});}setInterval(telemetry,10000);
@@ -132,5 +132,5 @@ $('back').onclick=()=>userAction(()=>{setWalk();yaw+=Math.PI;look();event('turn_
 $('step').onclick=()=>userAction(()=>{setWalk();camera.getWorldDirection(dir);camera.position.addScaledVector(dir,10);event('step',{distance:10,position:camera.position.toArray()});});
 $('side').onclick=()=>userAction(()=>{setWalk();camera.position.x+=Math.cos(yaw)*3;camera.position.z-=Math.sin(yaw)*3;event('side',{position:camera.position.toArray()});});
 $('metrics').onclick=()=>{telemetry();const blob=new Blob([JSON.stringify({...metrics,current:snapshot()},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='v23_browser_metrics.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
-$('hardware').textContent=/Basic Render|SwiftShader|llvmpipe/i.test(metrics.renderer)?'当前为软件渲染：大资产帧率受限，不代表 A800 生成速度。':'当前 WebGL 渲染器：'+metrics.renderer;
+$('hardware').textContent=/Basic Render|SwiftShader|llvmpipe/i.test(metrics.renderer)?'Software rendering: large assets limit frame rate; this does not represent A800 generation speed.':'Current WebGL renderer: '+metrics.renderer;
 home();navigationPose=poseKey();vis();requestAnimationFrame(frame);void ensureNative();void poll();

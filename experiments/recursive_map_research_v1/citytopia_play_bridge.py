@@ -27,12 +27,12 @@ def main():
             res=conn.getresponse();return res.status,res.read()
         finally:conn.close()
     html=(UI/'index.html').read_text(encoding='utf-8')
-    html=re.sub(r'<header>.*?</header>','<header><div class="brand"><b>WORLD<span>LAB</span></b><small>EXPERIMENT B · CITYTOPIA / MAP10</small></div><div id="health" class="pill">连接中</div></header>',html,flags=re.S)
+    html=re.sub(r'<header>.*?</header>','<header><div class="brand"><b>WORLD<span>LAB</span></b><small>EXPERIMENT B · CITYTOPIA / MAP10</small></div><div id="health" class="pill">Connecting</div></header>',html,flags=re.S)
     html=re.sub(r'<aside>.*?</aside>','',html,flags=re.S)
     html=re.sub(r'<section class="timeline">.*?</section>','',html,flags=re.S)
     html=html.replace('</head>','''<style>main{display:block!important;max-width:1400px;margin:auto}.selector,.subbar,#map-compare,#onboarding,#building-labels{display:none!important}#viewport{height:auto;aspect-ratio:16/9;min-height:320px;max-height:78vh}#render{width:100%;height:100%}#minimap{display:none}#loading{top:50%;height:max-content}#native-image{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}#labels{z-index:5;pointer-events:none}#hint{z-index:6}#move-pad{z-index:7}#crosshair{z-index:6}#camera-bar{flex-wrap:wrap}footer{padding:8px}#case-note{padding:8px;font-size:13px}#map-source{padding:8px}</style></head>''')
-    html=html.replace('正在读取已保存的真实 GLB…','加载已存 CityTopia 原生 RGB / 深度预览…')
-    html=html.replace('Source assets immutable · 原生 GLB / 研究失败结果 / 混合世界分开记录','CityTopia 原生模型 · Map10 固定条件和风格 · 本轮无训练 / 无逐帧增强 / 非动态4D')
+    html=html.replace('Loading saved GLB geometry…','Loading saved CityTopia native RGB / depth preview…')
+    html=html.replace('Source assets immutable · Native GLBs / failed research results / mixed worlds recorded separately','Native CityTopia model · Fixed Map10 conditions and styles · No training / no per-frame enhancement / no dynamic 4D')
     class Handler(BaseHTTPRequestHandler):
         def log_message(self,*a):pass
         def reply(self,code,data,kind='application/json'):

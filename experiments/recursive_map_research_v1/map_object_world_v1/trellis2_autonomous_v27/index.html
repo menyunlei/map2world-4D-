@@ -1,64 +1,64 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Map10 · 自主生成与验收</title>
+  <title>Map10 · Autonomous generation and acceptance</title>
   <link rel="stylesheet" href="style.css">
   <script type="importmap">{"imports":{"three":"/vendor/three.module.js"}}</script>
 </head>
 <body>
   <aside>
     <small>V27 / MAP10 / LIVE CAMERA</small>
-    <h1>边走边生成 · Map10</h1>
-    <p id="note">地图脚手架载入中。建筑体块为占位，高度为示意。</p>
-    <div class="row"><button id="map">返回地图</button><button id="home">回起点</button><button id="top">俯视</button></div>
-    <div class="row"><button id="walk">行走</button><button id="turn">转身 180°</button><button id="side">右移 3</button></div>
-    <div class="row"><button id="step">前进 5</button><button id="stop">停止</button></div>
-    <p id="trigger">在地图范围内实际移动时，由服务器判断触发；前端每 200ms 上报真实相机。</p>
-    <details open id="display-settings"><summary>显示配色 · 不改变资产</summary>
-      <label for="display-color">资产基色解释</label>
-      <select id="display-color"><option value="native-srgb">原生基色（sRGB，减少发白）</option><option value="linear">原线性解释（对照）</option></select>
-      <label class="check"><input id="display-sky" type="checkbox" checked>浅蓝渐变天空</label>
-      <label class="check"><input id="display-grid" type="checkbox">地图辅助网格</label>
-      <p>天空与地图底板仅为显示背景；生成道路、建筑和植被保留原色。无雾遮挡，无几何修补。</p>
+    <h1>Generate while walking · Map10</h1>
+    <p id="note">Loading the map scaffold. Building masses are placeholders with illustrative heights.</p>
+    <div class="row"><button id="map">Return to map</button><button id="home">Return to start</button><button id="top">Top view</button></div>
+    <div class="row"><button id="walk">Walk</button><button id="turn">Turn 180°</button><button id="side">Move right 3</button></div>
+    <div class="row"><button id="step">Move forward 5</button><button id="stop">Stop</button></div>
+    <p id="trigger">The server determines triggers from actual movement within the map bounds; the frontend reports the actual camera every 200ms.</p>
+    <details open id="display-settings"><summary>Display colors · Assets unchanged</summary>
+      <label for="display-color">Asset base-color interpretation</label>
+      <select id="display-color"><option value="native-srgb">Native base color (sRGB, less washed out)</option><option value="linear">Original linear interpretation (comparison)</option></select>
+      <label class="check"><input id="display-sky" type="checkbox" checked>Light blue gradient sky</label>
+      <label class="check"><input id="display-grid" type="checkbox">Map helper grid</label>
+      <p>The sky and map base are display backgrounds only; generated roads, buildings and vegetation retain their original colors. No fog obscuration or geometry repair.</p>
     </details>
     <section aria-labelledby="state-title">
-      <div class="heading"><b id="state-title">服务器状态</b><span id="budget">预算 —</span></div>
-      <p id="job" role="status">连接中…</p>
-      <p id="worker">Worker：—</p>
-      <p id="message">等待服务器消息</p>
-      <p id="feedback">针对性反馈：—</p>
-      <p id="counters">尝试 0 / 缓存 0 / 重访 0</p>
-      <p id="connection">状态 1s · 相机 200ms · 遥测 3s</p>
+      <div class="heading"><b id="state-title">Server status</b><span id="budget">Budget —</span></div>
+      <p id="job" role="status">Connecting…</p>
+      <p id="worker">Worker: —</p>
+      <p id="message">Waiting for a server message</p>
+      <p id="feedback">Targeted feedback: —</p>
+      <p id="counters">Attempts 0 / Cache 0 / Revisits 0</p>
+      <p id="connection">State 1s · Camera 200ms · Telemetry 3s</p>
     </section>
     <section aria-labelledby="candidate-title">
-      <b id="candidate-title">隔离候选 · 未验收资产</b>
-      <p>检查视图独立于地图。语义不确定按未通过处理；橙色轮廓来自地图占位。</p>
-      <button id="candidate-0" disabled>检查候选0（隔离）</button>
-      <p id="attempt-0">attempt-0：等待</p>
-      <button id="candidate-1" disabled>检查候选1（隔离）</button>
-      <p id="attempt-1">attempt-1：等待</p>
-      <label class="check"><input id="outlines" type="checkbox" checked>隔离检查叠加地图轮廓</label>
-      <p id="acceptance">尚无 ACCEPTED：地图建筑全部保留占位。</p>
+      <b id="candidate-title">Quarantined candidates · Unaccepted assets</b>
+      <p>The inspection view is separate from the map. Uncertain semantics count as a failure; orange outlines come from map placeholders.</p>
+      <button id="candidate-0" disabled>Inspect candidate 0 (quarantined)</button>
+      <p id="attempt-0">attempt-0: Waiting</p>
+      <button id="candidate-1" disabled>Inspect candidate 1 (quarantined)</button>
+      <p id="attempt-1">attempt-1: Waiting</p>
+      <label class="check"><input id="outlines" type="checkbox" checked>Overlay map outlines during quarantine inspection</label>
+      <p id="acceptance">No ACCEPTED asset yet: all map buildings remain placeholders.</p>
     </section>
     <section>
-      <b>Map10 对象与真实相机</b>
-      <p id="pos">相机等待初始化</p>
+      <b>Map10 objects and actual camera</b>
+      <p id="pos">Camera awaiting initialization</p>
       <ul id="objects"></ul>
-      <p id="loading">无需等待生成即可浏览地图。</p>
-      <p id="cache">SHA 缓存为空</p>
-      <details><summary>服务器验收报告</summary><pre id="reports">—</pre></details>
+      <p id="loading">Explore the map without waiting for generation.</p>
+      <p id="cache">SHA cache is empty</p>
+      <details><summary>Server acceptance reports</summary><pre id="reports">—</pre></details>
     </section>
-    <details open><summary>操作</summary><p>点击视口，WASD 移动，按住鼠标拖动转头；方向键转头；Q/E 升降；Shift 加速。俯视可拖动、滚轮缩放。自由相机，无碰撞约束。</p></details>
+    <details open><summary>Controls</summary><p>Click the viewport; WASD to move, hold and drag the mouse to look around; arrow keys to look; Q/E to move down/up; Shift to accelerate. In top view, drag to pan and scroll to zoom. Free camera, no collision constraints.</p></details>
     <p id="hardware"></p>
-    <p id="resolution">渲染分辨率测量中</p>
-    <button id="metrics">保存实测记录</button>
+    <p id="resolution">Measuring render resolution</p>
+    <button id="metrics">Save measured records</button>
   </aside>
   <main id="viewport">
-    <div id="hud"><span id="world-label">MAP10 · 占位地图</span><span id="fps">FPS 测量中</span><span id="init">初始化脚手架</span></div>
-    <canvas id="minimap" width="300" height="320" aria-label="Map10 对象 ID、地图范围与真实相机"></canvas>
-    <div id="legend">灰色建筑：地图占位 · 橙色箭头：真实相机</div>
+    <div id="hud"><span id="world-label">MAP10 · Placeholder map</span><span id="fps">Measuring FPS</span><span id="init">Initializing scaffold</span></div>
+    <canvas id="minimap" width="300" height="320" aria-label="Map10 object IDs, map bounds and actual camera"></canvas>
+    <div id="legend">Gray buildings: map placeholders · Orange arrow: actual camera</div>
     <div id="error" role="alert" hidden></div>
   </main>
   <script type="module" src="app.js?display=2"></script>

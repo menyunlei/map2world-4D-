@@ -69,16 +69,16 @@ def frontend(name):
         return body.replace('v=23', 'v=24').replace('v23_browser_metrics', 'v24_browser_metrics')
     body = body.replace('v23 · TRELLIS.2 Online', 'v24 · TRELLIS.2 Road Boundary Online')
     body = body.replace('V23 / CAMERA → ONLINE GENERATION', 'V24 / CAMERA → ROAD-BOUNDARY GENERATION')
-    body = body.replace('<h1>走向下一段街道</h1>', '<h1>v24 · 道路边界条件续接</h1>')
+    body = body.replace('<h1>Walk toward the next street segment</h1>', '<h1>v24 · Road-boundary-conditioned continuation</h1>')
     body = body.replace('127.0.0.1:8768', '127.0.0.1:8769')
-    body = body.replace('Native world · v21 原始街道 + 一次在线生成。',
-                        'Native world · 继承 v21 已生成道路的观测条件，一次道路边界条件生成。')
-    body = body.replace('v21 来自图像条件；',
-                        '条件继承自 v21 已生成道路观测；固定父世界仿射与块位置在推理前声明；不声称 Map10 对齐；')
-    details = ('<details><summary>固定父世界仿射 / inherited observed-road conditions</summary>'
-               '<p>原始 v21 GLB 已包含父变换；此处仅标注，不重复应用。'
-               '道路中心线、地面与方向来自已生成父街道观测。位置固定为 '
-               '[0, 0, -100.0154161373455]，无 Map10 对齐或接缝保证。</p><pre style="white-space:pre-wrap;overflow-wrap:anywhere">'
+    body = body.replace('Native world · Original v21 street + one online generation.',
+                        'Native world · Inherited observations of the generated v21 road, with one road-boundary-conditioned generation.')
+    body = body.replace('v21 is image-conditioned;',
+                        'Conditions are inherited from observations of the generated v21 road; the fixed parent-world affine and chunk position are declared before inference; no Map10 alignment is claimed;')
+    details = ('<details><summary>Fixed parent-world affine / inherited observed-road conditions</summary>'
+               '<p>The original v21 GLB already contains the parent transform; it is documented here and not applied again. '
+               'The road centerline, ground and direction come from observations of the generated parent street. The position is fixed at '
+               '[0, 0, -100.0154161373455], with no guarantee of Map10 alignment or seamless joins.</p><pre style="white-space:pre-wrap;overflow-wrap:anywhere">'
                + escape(json.dumps(condition_metadata(), ensure_ascii=False, indent=2))
                + '</pre></details>')
     return body.replace('</aside>', details + '</aside>')

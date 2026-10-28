@@ -43,17 +43,18 @@ result={'decision':'STOP','scope':'One custom sampler feasibility test; not a le
     'no_further_jobs':True}
 save(OUT/'ASSESSMENT.json',result)
 tr=''.join('<tr>'+''.join(f'<td>{x}</td>' for x in [r['mode'],f"{r['SS_support_projection_IoU_DIAGNOSTIC']:.3f}",f"{r['final_all_geometry_projection_IoU_DIAGNOSTIC']:.3f}",'UNRESOLVED',r['known_road_obstruction']])+'</tr>' for r in rows)
-page=f'''<!doctype html><meta charset="utf-8"><title>v20 — STOP</title>
+page=f'''<!doctype html><html lang="en"><meta charset="utf-8"><title>v20 — STOP</title>
 <style>body{{max-width:1500px;margin:28px auto;background:#14171f;color:#eee;font:17px/1.55 sans-serif}}a{{color:#85caff}}img{{max-width:100%}}video{{width:45%}}td,th{{padding:10px;border:1px solid #526}}small{{color:#bbb}}</style>
-<h1>v20 — STOP</h1><p>约束改变了位置支撑，但没有生成两栋完整建筑。小对象成树状细柱，大对象成不完整塔楼／立面骨架。保留全部失败资产，不追加试验。</p>
-<p>固定10.jpg两个近似屋顶轮廓，同一原生TRELLIS.2、参考图和噪声；无训练、无材质、无网格修补、无输出对齐拟合。地图提供XY与已知道路空域；模型提供其余高度、屋顶和细表面。高度并无地图真值。</p>
-<img src="COMPARISON.jpg"><p>上：原图；下：footprint编辑。红线是固定地图轮廓；中间图是原生资产新进程重载后的中性材质渲染。建筑语义不合格，不能把支撑重合率叫作建筑成功率。</p>
-<table><tr><th>布局</th><th>中间支撑IoU（诊断）</th><th>最终全部高处几何IoU（诊断）</th><th>建筑专属IoU</th><th>已登记道路遮挡</th></tr>{tr}</table>
-<p>历史v19高度筛面指标混入植被／底座，仍保留为场景投影诊断。本次独立评审仅看生成图、不看目标轮廓；无法可信确定完整屋顶区域，建筑专属数值留空，绝不按目标mask筛面造分数。</p>
-<p><a href="correct/geometry.glb">原图 GLB</a> · <a href="edit/geometry.glb">编辑 GLB</a> · <a href="ASSESSMENT.json">完整判定</a> · <a href="BLIND_VISUAL_ASSESSMENT.json">目标盲化AI审查</a> · <a href="PLAN.json">冻结方案</a></p>
+<h1>v20 — STOP</h1><p>The constraints changed spatial support but did not generate two complete buildings. The small object became thin tree-like columns, and the large object became an incomplete tower or facade skeleton. All failed assets are preserved; no further experiments.</p>
+<p>Two approximate roof outlines from 10.jpg are fixed, using the same native TRELLIS.2, reference image and noise; no training, materials, mesh repair or output alignment fitting. The map supplies XY and known road airspace; the model supplies the remaining heights, roofs and fine surfaces. No map ground truth exists for height.</p>
+<img src="COMPARISON.jpg"><p>Top: original layout; bottom: footprint edit. Red lines are fixed map outlines; the middle images are neutral-material renders of native assets reloaded in a new process. Building semantics failed; support overlap cannot be called a building success rate.</p>
+<table><tr><th>Layout</th><th>Intermediate support IoU (diagnostic)</th><th>Final all-elevated-geometry IoU (diagnostic)</th><th>Building-only IoU</th><th>Registered road obstruction</th></tr>{tr}</table>
+<p>Historical v19 height-filtered face metrics included vegetation and bases; they remain scene-projection diagnostics. This independent review sees only generated images, without target outlines; complete roof regions cannot be identified reliably, so building-only values remain blank. Faces are never selected using the target mask to manufacture scores.</p>
+<p><a href="correct/geometry.glb">Original-layout GLB</a> · <a href="edit/geometry.glb">Edited-layout GLB</a> · <a href="ASSESSMENT.json">Full assessment</a> · <a href="BLIND_VISUAL_ASSESSMENT.json">Target-blind AI review</a> · <a href="PLAN.json">Frozen plan</a></p>
 <video controls src="correct/lateral_2s_24fps.mp4"></video> <video controls src="edit/lateral_2s_24fps.mp4"></video>
-<p>GPU占用 {result['GPU_seconds_including_failure_load_idle']:.1f} 秒（含加载、空闲及失败调用）；所有GPU工作已结束。AI审查不等于人工验收。</p>
-<p>结论：停止这一冻结先验的地图锚定修补线。建议下一阶段优先考虑已按多建筑城市布局预训练、具备footprint／道路条件的3D骨干；本轮不自动启动任何新模型或训练。</p>'''
+<p>GPU occupancy was {result['GPU_seconds_including_failure_load_idle']:.1f} seconds (including loading, idle time and failed calls); all GPU work has ended. AI review is not human acceptance.</p>
+<p>Conclusion: stop this map-anchor repair approach using a frozen prior. For the next stage, prioritize a 3D backbone pretrained on multi-building city layouts with footprint/road conditioning; this round does not automatically launch any new model or training.</p>
+'''
 with (OUT/'review.html').open('x',encoding='utf8') as h:h.write(page)
 save(OUT/'SESSION_STATE.json',{'status':'COMPLETE_STOP','decision':'STOP','next_action':'None authorized automatically',
     'assets':[r['asset_sha256'] for r in rows],'training_updates':0,'GPU_seconds':result['GPU_seconds_including_failure_load_idle']})

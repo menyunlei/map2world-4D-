@@ -11,7 +11,7 @@ SCALE=100.0154161373455
 PORT=8770
 OLD=JOB/'map_object_world_v1/trellis2_boundary_online_v24/chunks/road-boundary-0--1'
 WORKER=JOB/'map_object_world_v1/trellis2_online_v23/mesh_worker.js'
-state={'status':'waiting_camera','message':'移动即请求前方两个区块；几何先到、外观后到。不是逐帧即时生成。',
+state={'status':'waiting_camera','message':'Movement requests two chunks ahead; geometry arrives first, followed by appearance. This is not immediate generation for every frame.',
        'budget':{'max_generations':2,'used':0,'max_gpu_seconds':1200,'max_concurrency':2},
        'lookahead_seconds':150,'map_aligned':False,'seamless_guarantee':False,
        'v21':{'asset_url':'/assets/v21.glb','sha256':'b372c05fbdd2eba6b5978b15cf7a25fcb1e238aea47a9d93ca6fbe3e40f016fe'},

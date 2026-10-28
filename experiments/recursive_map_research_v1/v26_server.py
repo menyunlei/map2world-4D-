@@ -8,7 +8,7 @@ for i in (2,3):
     d=JOB/f'map_object_world_v1/trellis2_realtime_v25/chunks/stream-0--{i}'
     state['cached'].append(dict(id=f'stream-0--{i}',status='ready',position=[0,0,-SCALE*i],
         asset_url=f'/assets/cache/{i}.glb',sha256=digest(d/'chunk_100m.glb'),historical_immutable=True))
-state.update(status='warming',message='常驻模型预热不是生成。实际向前行走才逐块派发；缓存区域不重算。',
+state.update(status='warming',message='Resident-model warmup is not generation. Actual forward walking dispatches one chunk at a time; cached regions are not recomputed.',
              worker={},prefetch_distance=240)
 state['budget']=dict(max_generations=3,used=0,max_gpu_seconds=900,max_concurrency=1)
 state['chunks']=[dict(id=f'walk-0--{i}',index=i,status='waiting_camera',position=[0,0,-SCALE*i],

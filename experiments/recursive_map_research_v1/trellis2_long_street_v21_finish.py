@@ -41,16 +41,17 @@ new=OUT/'views/appearance/oblique.png';panel=Image.new('RGB',(1024,548),'#252525
 for i,(p,label) in enumerate([(old,'v17: compact plaza'),(new,'v21: NEW generated continuous street')]):
     panel.paste(Image.open(p).resize((512,512)),(512*i,36));d.text((512*i+8,10),label,fill='white')
 panel.save(OUT/'V17_V21_COMPARISON.jpg',quality=95)
-page=f'''<!doctype html><meta charset="utf-8"><title>v21 — Larger generated street</title>
+page=f'''<!doctype html><html lang="en"><meta charset="utf-8"><title>v21 — Larger generated street</title>
 <style>body{{max-width:1200px;margin:28px auto;background:#202329;color:#eee;font:18px/1.6 sans-serif}}a{{color:#8bceff}}img,video{{max-width:100%}}small{{color:#bbb}}</style>
-<h1>v21：更长的原生生成街道</h1><p>同一个TRELLIS.2，一张固定长街参考图，一个固定seed，零训练。建筑、道路和外观由模型一次生成，不是复制旧街区。此页图片和视频均来自独立加载保存的三维资产。</p>
-<p><a href="large_street_100m.glb">下载完整GLB（约108MB，可导入Blender）</a> · <a href="street_20s_24fps.mp4">20秒街内行进与回看</a> · <a href="RESULTS.json">结果与限制</a></p>
+<h1>v21: Longer natively generated street</h1><p>The same TRELLIS.2, one fixed long-street reference image, one fixed seed and zero training. Buildings, roads and appearance were generated together in one model pass, without copying old blocks. All images and videos on this page come from independently loading the saved 3D asset.</p>
+<p><a href="large_street_100m.glb">Download complete GLB (about 108MB, importable into Blender)</a> · <a href="street_20s_24fps.mp4">20-second street walkthrough and look back</a> · <a href="RESULTS.json">Results and limitations</a></p>
 <video controls src="street_20s_24fps.mp4" poster="tour_views/0000.png"></video>
-<p>480帧／24fps；相机在生成道路内前进约90米、转身、返回10米，视高1.6米。以上米制为统一展示尺度：生成场景的最长水平边设为100米，并非测绘结果。小图来自生成资产，不是输入地图。</p>
+<p>480 frames / 24fps; the camera moves forward about 90 meters along the generated road, turns around and returns 10 meters, at an eye height of 1.6 meters. These metric values use a uniform display scale: the longest horizontal extent of the generated scene is set to 100 meters, not a surveyed measurement. The inset comes from the generated asset, not the input map.</p>
 <img src="street_contact.jpg"><img src="V17_V21_COMPARISON.jpg"><img src="appearance_contact.jpg">
-<p>局部窗户、植物和墙面仍有模糊／简化；这不是照片级街区，也没有证明Map10地图控制。检查是AI视觉审查，不是人工验收。</p>
-<p>GPU占用{cost:.1f}秒（含加载与空闲）；一次外部imagegen参考图不计入A800占用。全部GPU任务已结束。</p>
-<details><summary>参考图与生成边界（参考图不是最终3D）</summary><img src="input.png"><p>imagegen只创建条件参考图；TRELLIS.2生成最终几何与外观。源提示词保存在同级参考记录中。无程序化城市、无输出修补、无种子筛选。</p></details>'''
+<p>Some windows, plants and walls remain blurry or simplified; this is not a photorealistic block, and Map10 map control has not been demonstrated. Inspection is an AI visual review, not human acceptance.</p>
+<p>GPU occupancy was {cost:.1f} seconds (including loading and idle time); one external imagegen reference image is excluded from A800 occupancy. All GPU jobs have ended.</p>
+<details><summary>Reference image and generation scope (the reference is not the final 3D result)</summary><img src="input.png"><p>imagegen only creates the conditioning reference image; TRELLIS.2 generates the final geometry and appearance. The source prompt is saved in the reference record in the same directory. No procedural city, output repair or seed selection.</p></details>
+'''
 with (OUT/'review.html').open('x',encoding='utf8') as h:h.write(page)
 selected=[p for p in OUT.rglob('*') if p.is_file() and not any(x in p.relative_to(OUT).parts for x in ['work','frames','tmp','cache','extensions'])
     and p.suffix in ['.json','.csv','.log','.png','.jpg','.mp4','.html']]
