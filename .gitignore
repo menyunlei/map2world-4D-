@@ -112,3 +112,12 @@
 **/environment/
 **/runtime/
 **/cache/
+
+# Raw-map world branch (Experiment B) and baked-field draft: source only.
+!/docs/RAWMAP_WORLD.md
+!/experiments/recursive_map_research_v1/map_object_world_v1/rawmap_world_v1/
+/experiments/recursive_map_research_v1/map_object_world_v1/rawmap_world_v1/*
+!/experiments/recursive_map_research_v1/map_object_world_v1/rawmap_world_v1/*.py
+!/experiments/recursive_map_research_v1/map_object_world_v1/citytopia_baked_field_v1/
+/experiments/recursive_map_research_v1/map_object_world_v1/citytopia_baked_field_v1/*
+!/experiments/recursive_map_research_v1/map_object_world_v1/citytopia_baked_field_v1/*.py

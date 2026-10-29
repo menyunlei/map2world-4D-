@@ -16,6 +16,10 @@ The renderer reuses static map encodings, distributes the original padded tiles,
 and evaluates buildings only where their output is visible. Original model
 weights, density sampling and the 960×540 native image size are retained.
 
+The **raw-map branch** (RGB map image → learned Gaussian world → same player) is
+described in [docs/RAWMAP_WORLD.md](docs/RAWMAP_WORLD.md). It is code plus CPU
+checks only; no trained checkpoint exists yet.
+
 ## Code map
 
 All project scripts live in `experiments/recursive_map_research_v1/`:

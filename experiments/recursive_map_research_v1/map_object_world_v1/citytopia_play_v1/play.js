@@ -15,6 +15,8 @@ $('map-source').textContent='CityDreamer4D · CityTopia weights · Existing Map1
 $('case-note').textContent='Fast navigation projects saved native RGB with coarse depth into 3D; holes and seams may appear. Use it to choose a camera. Press R for A800 native neural rendering at that camera (960×540, no sharpening/SR). The navigation preview does not establish final generation quality.';
 $('camera-bar').innerHTML='<button id="walk" class="primary">▶ Walk WASD</button><button id="fly">Free flight Q/E</button><button id="native" class="primary">R · Render current native view</button><button id="preview">Return to fast preview</button><button id="last-result" disabled>Latest native result</button><select id="route-view" aria-label="Fixed native cameras"></select><button id="back">180° Turn around</button><button id="save-view">Save camera JSON</button><button id="shot">Screenshot PNG</button>';
 $('camera-bar').insertAdjacentHTML('beforeend','<label><input id="auto-native" type="checkbox" checked>Movement triggers four GPUs · Latest camera first</label>');
+$('camera-bar').insertAdjacentHTML('beforeend','<select id="model" aria-label="Model"><option value="native">Native CityDreamer4D baseline</option><option value="candidate">Raw-map candidate (rawmap_world_v1)</option></select>');
+let jobModel='native';
 $('hint').textContent='WASD to move · Drag to turn · Shift to accelerate · R for native render · Esc to stop';
 
 function toWorld(p){return new T.Vector3((p.y-1536)/4,(p.z-14)/4,-(p.x-1536)/4);}
@@ -47,18 +49,18 @@ function selectPreview(){
  if(cache.size>12){for(const [id,m] of cache)if(!ranked.slice(0,8).some(v=>v.c.index===id)){scene.remove(m);m.geometry.dispose();m.material.map.dispose();m.material.dispose();cache.delete(id);}}
 }
 async function requestNative(){
- try{if(currentJob||performance.now()<nextNativeAt)return;autoDue=0;currentJob='sending';submittedAt=performance.now();const p=pose(),job=await fetchJSON('/api/render',{pose:p});currentJob=job.id;$('native').disabled=true;$('error').hidden=true;$('health').textContent='A800 GPU0–3 dynamic tiles / Native rendering; navigation remains available';clearTimeout(statusTimer);status();}
+ try{if(currentJob||performance.now()<nextNativeAt)return;autoDue=0;currentJob='sending';submittedAt=performance.now();const p=pose(),job=await fetchJSON('/api/render',{pose:p,model:jobModel=$('model').value});currentJob=job.id;$('native').disabled=true;$('error').hidden=true;$('health').textContent='A800 GPU0–3 dynamic tiles / Native rendering; navigation remains available';clearTimeout(statusTimer);status();}
  catch(e){currentJob=null;$('native').disabled=false;autoDue=0;nextNativeAt=performance.now()+3000;fail(e);}
 }
 async function status(){
  if(statusBusy)return;statusBusy=true;clearTimeout(statusTimer);
- try{const s=await fetchJSON('/api/status');const j=currentJob&&s.jobs[currentJob];
+ try{const s=await fetchJSON('/api/status?model='+jobModel);const j=currentJob&&s.jobs[currentJob];
   const gpu=s.state.gpus?.join('/')??s.state.gpu??'?';
   $('health').textContent=j?`GPU ${gpu} · ${j.status} · ${j.tiles_done?.length??0}/${j.tiles_total??4} dynamic tiles · Navigation remains available`:`GPU ${gpu} · ${s.state.phase}`;
   if(j?.status==='done'){currentJob=null;$('native').disabled=false;lastResult=j;$('last-result').disabled=false;$('last-result').textContent=`View native result (${j.seconds.toFixed(1)}s)`;
    const now=pose(),same=['cam_position','cam_look_at'].every(k=>['x','y','z'].every(a=>Math.abs(now[k][a]-j.pose[k][a])<.02));
    canvas.dataset.nativeSeconds=j.seconds;canvas.dataset.nativeJob=j.id;
-   if(same){autoDue=0;showNative(j.url,j.pose,`Four-GPU native 960×540 · ${(j.render_seconds??j.seconds).toFixed(2)}s compute · No image enhancement`);}
+   if(same){autoDue=0;showNative(j.url,j.pose,jobModel==='candidate'?`Raw-map candidate · generated Gaussians from map image · ${j.seconds.toFixed(2)}s render · not CityDreamer4D`:`Four-GPU native 960×540 · ${(j.render_seconds??j.seconds).toFixed(2)}s compute · No image enhancement`);}
   }else if(j?.status==='error'){currentJob=null;$('native').disabled=false;nextNativeAt=performance.now()+3000;fail(j.error);}
   else if(currentJob&&currentJob!=='sending'&&!j){currentJob=null;$('native').disabled=false;autoDue=performance.now()+500;}
  }catch(e){$('health').textContent='Native service unavailable; loaded previews remain navigable';}

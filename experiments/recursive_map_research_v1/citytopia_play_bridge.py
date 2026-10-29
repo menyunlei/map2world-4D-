@@ -2,7 +2,7 @@
 import http.client, json, mimetypes, os, re, threading
 from pathlib import Path, PurePosixPath
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 import paramiko
 
 JOB=Path(__file__).resolve().parent
@@ -11,6 +11,7 @@ OUT=JOB/'map_object_world_v1/citytopia_play_v1'
 VENDOR=JOB/'matched_backbone_adaptation_v1/asset_delivery_v3/interactive/dist/vendor'
 REMOTE='/hpc2hdd/home/xhe989/Documents/2541/project2/DreamX-World-master/experiments/recursive_map_research_v1/map_object_world_v1/citytopia_play_v1'
 PORT=18936
+MODEL_PORTS={'native':18935,'candidate':18937}  # candidate: rawmap_world_v1/service.py
 
 def main():
     ssh=paramiko.SSHClient()
@@ -19,9 +20,10 @@ def main():
     ssh.set_missing_host_key_policy(paramiko.RejectPolicy())
     ssh.connect('10.120.18.240',port=6988,username='xhe989-YKWbGTug',password=os.environ.pop('MAP_CITY_SSH_PASSWORD'),allow_agent=False,look_for_keys=False,timeout=25)
     ssh.get_transport().set_keepalive(30)
-    def rpc(method,body=None):
-        ch=ssh.get_transport().open_channel('direct-tcpip',('127.0.0.1',18935),('127.0.0.1',0),timeout=15)
-        conn=http.client.HTTPConnection('127.0.0.1',18935,timeout=20);conn.sock=ch
+    def rpc(method,body=None,model='native'):
+        port=MODEL_PORTS[model]
+        ch=ssh.get_transport().open_channel('direct-tcpip',('127.0.0.1',port),('127.0.0.1',0),timeout=15)
+        conn=http.client.HTTPConnection('127.0.0.1',port,timeout=20);conn.sock=ch
         try:
             conn.request(method,'/render' if method=='POST' else '/status',body,{'Content-Type':'application/json'})
             res=conn.getresponse();return res.status,res.read()
@@ -44,7 +46,7 @@ def main():
             try:
                 if path in ['/','/index.html']:return self.reply(200,html.encode(),'text/html; charset=utf-8')
                 if path=='/api/status':
-                    code,data=rpc('GET');return self.reply(code,data)
+                    code,data=rpc('GET',model=parse_qs(urlsplit(self.path).query).get('model',['native'])[0]);return self.reply(code,data)
                 local={'/app.js':OUT/'play.js','/style.css':UI/'style.css','/vendor/three.module.js':VENDOR/'three.module.js'}
                 if path in local:return self.reply(200,local[path].read_bytes(),mimetypes.guess_type(path)[0] or 'text/javascript')
                 rel=PurePosixPath(path.lstrip('/'))
@@ -61,7 +63,7 @@ def main():
             if self.headers.get('Origin') not in [None,f'http://127.0.0.1:{PORT}',f'http://localhost:{PORT}']:return self.reply(403,b'{}')
             try:
                 n=int(self.headers.get('Content-Length',0));assert 0<n<8192
-                code,data=rpc('POST',self.rfile.read(n));self.reply(code,data)
+                body=self.rfile.read(n);code,data=rpc('POST',body,json.loads(body).get('model','native'));self.reply(code,data)
             except Exception as e:self.reply(503,json.dumps({'error':str(e)}).encode())
     server=ThreadingHTTPServer(('127.0.0.1',PORT),Handler)
     print(f'http://127.0.0.1:{PORT}/',flush=True)
